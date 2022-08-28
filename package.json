@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack serve --node-env=development",
-    "build": "webpack --node-env=production"
+    "build": "webpack --node-env=production",
+    "prepare": "husky install",
+    "lint": "eslint --ext .ts,.tsx src/ --fix && prettier --write **/*.{ts,tsx}"
   },
   "author": "eenaree",
   "license": "ISC",
@@ -38,6 +40,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "fork-ts-checker-webpack-plugin": "^7.2.13",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "^8.0.0",
     "prettier": "^2.7.1",
     "react-refresh": "^0.14.0",
     "ts-loader": "^9.3.1",

@@ -21,6 +21,9 @@
       "webpack": {
         "config": "webpack.config.ts"
       }
+    },
+    "react": {
+      "version": "detect"
     }
   },
   "extends": [
@@ -57,9 +60,17 @@
         "pathGroups": [
           { "pattern": "react", "group": "builtin", "position": "after" },
           { "pattern": "react-dom", "group": "builtin", "position": "after" },
-          { "pattern": "react-router-dom", "group": "builtin", "position": "after" }
+          {
+            "pattern": "react-router-dom",
+            "group": "builtin",
+            "position": "after"
+          }
         ],
-        "pathGroupsExcludedImportTypes": ["react", "react-dom", "react-router-dom"],
+        "pathGroupsExcludedImportTypes": [
+          "react",
+          "react-dom",
+          "react-router-dom"
+        ],
         "alphabetize": {
           "order": "asc",
           "caseInsensitive": true
