@@ -12,6 +12,7 @@ const reset = css`
   html,
   body {
     height: 100%;
+    font-family: Pretendard, sans-serif;
   }
 
   html,
