@@ -2,7 +2,7 @@ name: development workflow
 
 on:
   pull_request:
-    branches: ['development']
+    branches: ['develop']
 
 jobs:
   build:
