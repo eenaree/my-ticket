@@ -1,9 +1,9 @@
-import { PropsWithChildren } from 'react';
+import * as React from 'react';
 import { colors } from '@styles/theme';
 import { styles } from './styles';
 
 interface Props {
-  onClick(): void;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
   bgColor?: string;
   size?: keyof typeof sizes;
 }
@@ -28,7 +28,7 @@ export default function Button({
   onClick,
   bgColor,
   size = 'medium',
-}: PropsWithChildren<Props>) {
+}: React.PropsWithChildren<Props>) {
   return (
     <button
       onClick={onClick}
