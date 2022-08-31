@@ -3,7 +3,6 @@ import { colors } from '@styles/theme';
 import { styles } from './styles';
 
 interface Props {
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
   bgColor?: string;
   size?: keyof typeof sizes;
 }
@@ -25,13 +24,12 @@ const sizes = {
 
 export default function Button({
   children,
-  onClick,
   bgColor,
   size = 'medium',
-}: React.PropsWithChildren<Props>) {
+  ...props
+}: React.PropsWithChildren<Props> & React.ComponentPropsWithRef<'button'>) {
   return (
     <button
-      onClick={onClick}
       css={styles.button}
       style={{
         ['--button-height']: sizes[size].height,
@@ -39,6 +37,7 @@ export default function Button({
         ['--button-color']: bgColor ? colors.white : colors.black,
         ['--button-bg']: bgColor || 'transparent',
       }}
+      {...props}
     >
       {children}
     </button>
