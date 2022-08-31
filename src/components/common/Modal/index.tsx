@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { useModalDispatch } from '@context/ModalContext';
 import useDelayUnmount from '@hooks/useDelayUnmount';
@@ -16,10 +17,25 @@ export default function Modal({
   const modalDispatch = useModalDispatch();
   const isMounted = useDelayUnmount(modal);
   const setModalRef = useDetectOutsideClick(isMounted, closeModal);
+  const scrollBarWidth = useRef(window.innerWidth - document.body.clientWidth);
 
   function closeModal() {
     modalDispatch({ type: 'CLOSE_MODAL' });
   }
+
+  useEffect(() => {
+    const scrollable = window.innerHeight !== document.body.scrollHeight;
+
+    if (isMounted) {
+      document.body.style.overflow = 'hidden';
+      if (scrollable) {
+        document.body.style.paddingRight = `${scrollBarWidth.current}px`;
+      }
+    } else {
+      document.body.style.overflow = 'visible';
+      document.body.style.paddingRight = '0px';
+    }
+  }, [isMounted]);
 
   if (!isMounted) return null;
 
