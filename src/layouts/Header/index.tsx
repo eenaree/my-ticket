@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import Button from '@components/common/Button';
-import { useModalDispatch } from '@context/ModalContext';
+import Login from '@components/Login';
+import { useModal, useModalDispatch } from '@context/ModalContext';
 import { styles } from './styles';
 
 export default function Header() {
+  const modal = useModal();
   const modalDispatch = useModalDispatch();
 
   function onClickLogin(e: React.MouseEvent) {
@@ -24,6 +26,7 @@ export default function Header() {
         <Button onClick={onClickLogin} data-modal="login">
           로그인
         </Button>
+        <Login modal={modal === 'login'} />
       </div>
     </header>
   );
