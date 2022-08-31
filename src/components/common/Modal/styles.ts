@@ -39,7 +39,6 @@ export const styles = {
   modalContainer: (modal: boolean) =>
     css({
       backgroundColor: colors.white,
-      padding: '1.25rem',
       borderRadius: 4,
       animationName: modal ? modalBoxSlideDown : modalBoxSlideUp,
       animationDuration: '0.6s',
