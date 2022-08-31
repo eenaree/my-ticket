@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useModalDispatch } from '@context/ModalContext';
+import useDelayUnmount from '@hooks/useDelayUnmount';
+import useDetectOutsideClick from '@hooks/useDetectOutsideClick';
 import { styles } from './styles';
 
 interface Props {
@@ -12,52 +13,13 @@ export default function Modal({
   children,
   modal,
 }: React.PropsWithChildren<Props>) {
-  const [isMounted, setIsMounted] = useState(false);
-  const modalRef = useRef<HTMLElement>();
-  const setModalRef: React.RefCallback<HTMLElement> = element => {
-    if (element) {
-      modalRef.current = element;
-    }
-  };
   const modalDispatch = useModalDispatch();
+  const isMounted = useDelayUnmount(modal);
+  const setModalRef = useDetectOutsideClick(isMounted, closeModal);
 
-  useEffect(() => {
-    let timeout: number;
-
-    if (modal && !isMounted) {
-      setIsMounted(true);
-      return;
-    }
-    if (!modal && isMounted) {
-      timeout = window.setTimeout(() => {
-        setIsMounted(false);
-      }, 500);
-    }
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [modal, isMounted]);
-
-  useEffect(() => {
-    function onClickElementOutside(e: MouseEvent) {
-      if (
-        modalRef.current &&
-        e.target instanceof HTMLElement &&
-        !modalRef.current.contains(e.target)
-      ) {
-        modalDispatch({ type: 'CLOSE_MODAL' });
-      }
-    }
-
-    if (isMounted) {
-      window.addEventListener('click', onClickElementOutside);
-    }
-
-    return () => {
-      window.removeEventListener('click', onClickElementOutside);
-    };
-  }, [isMounted]);
+  function closeModal() {
+    modalDispatch({ type: 'CLOSE_MODAL' });
+  }
 
   if (!isMounted) return null;
 
