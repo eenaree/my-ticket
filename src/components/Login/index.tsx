@@ -4,17 +4,35 @@ import NaverLoginIcon from '@assets/naver-login.svg';
 import Button from '@components/common/Button';
 import Modal from '@components/common/Modal';
 import { useModalDispatch } from '@context/ModalContext';
+import { baseURL } from '@services/index';
 import { styles } from './styles';
 
 interface Props {
   modal: boolean;
 }
 
+interface LoginProps {
+  onClickLogin: React.MouseEventHandler<HTMLButtonElement>;
+}
+
+type Provider = 'google' | 'kakao' | 'naver';
+
 export default function Login({ modal }: Props) {
   const modalDispatch = useModalDispatch();
 
   function closeModal() {
     modalDispatch({ type: 'CLOSE_MODAL' });
+  }
+
+  function onClickLogin(provider: Provider) {
+    const left = window.screen.width / 2 - 300;
+    const top = window.screen.height / 2 - 300;
+
+    window.open(
+      `${baseURL}/auth/${provider}`,
+      `${provider}Login`,
+      `left=${left},top=${top},width=600,height=600`
+    );
   }
 
   return (
@@ -26,9 +44,9 @@ export default function Login({ modal }: Props) {
         </div>
         <div css={styles.modalBody}>
           <ul>
-            <GoogleLogin />
-            <KakaoLogin />
-            <NaverLogin />
+            <GoogleLogin onClickLogin={() => onClickLogin('google')} />
+            <KakaoLogin onClickLogin={() => onClickLogin('kakao')} />
+            <NaverLogin onClickLogin={() => onClickLogin('naver')} />
           </ul>
         </div>
       </section>
@@ -36,10 +54,10 @@ export default function Login({ modal }: Props) {
   );
 }
 
-function GoogleLogin() {
+function GoogleLogin({ onClickLogin }: LoginProps) {
   return (
     <li css={styles.googleLogin}>
-      <Button>
+      <Button onClick={onClickLogin}>
         <GoogleLoginIcon />
         <span>구글 계정으로 로그인</span>
       </Button>
@@ -47,10 +65,10 @@ function GoogleLogin() {
   );
 }
 
-function KakaoLogin() {
+function KakaoLogin({ onClickLogin }: LoginProps) {
   return (
     <li css={styles.kakaoLogin}>
-      <Button>
+      <Button onClick={onClickLogin}>
         <KakaoLoginIcon />
         <span>카카오 계정으로 로그인</span>
       </Button>
@@ -58,10 +76,10 @@ function KakaoLogin() {
   );
 }
 
-function NaverLogin() {
+function NaverLogin({ onClickLogin }: LoginProps) {
   return (
     <li css={styles.naverLogin}>
-      <Button>
+      <Button onClick={onClickLogin}>
         <NaverLoginIcon />
         <span>네이버 아이디로 로그인</span>
       </Button>
