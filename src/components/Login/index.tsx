@@ -25,7 +25,14 @@ export default function Login({ modal }: Props) {
   }
 
   function onClickLogin(provider: Provider) {
-    window.open(`${baseURL}/auth/${provider}`, `${provider}Login`, 'popup');
+    const left = window.screen.width / 2 - 300;
+    const top = window.screen.height / 2 - 300;
+
+    window.open(
+      `${baseURL}/auth/${provider}`,
+      `${provider}Login`,
+      `left=${left},top=${top},width=600,height=600`
+    );
   }
 
   return (
