@@ -27,6 +27,7 @@ type Provider = 'google' | 'kakao' | 'naver';
 export default function Login({ modal }: Props) {
   const modalDispatch = useModalDispatch();
   const newWindowRef = useRef<Window | null>();
+  const prevWindowTargetRef = useRef<string>();
 
   function closeModal() {
     modalDispatch({ type: 'CLOSE_MODAL' });
@@ -54,7 +55,17 @@ export default function Login({ modal }: Props) {
     const target = `${provider}Login`;
     const features = `left=${left},top=${top},width=600,height=600`;
 
-    newWindowRef.current = window.open(url, target, features);
+    if (!newWindowRef.current || newWindowRef.current.closed) {
+      newWindowRef.current = window.open(url, target, features);
+    } else if (prevWindowTargetRef.current == target) {
+      newWindowRef.current.focus();
+    } else {
+      newWindowRef.current.close();
+      newWindowRef.current = window.open(url, target, features);
+      newWindowRef.current?.focus();
+    }
+
+    prevWindowTargetRef.current = target;
 
     window.removeEventListener('message', receiveMessage);
     window.addEventListener('message', receiveMessage);
