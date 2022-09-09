@@ -48,12 +48,12 @@ export default function Login({ modal }: Props) {
   }
 
   function onClickLogin(provider: Provider) {
-    const left = window.screen.width / 2 - 300;
-    const top = window.screen.height / 2 - 300;
+    const left = document.body.offsetWidth / 2 - 250;
+    const top = document.body.offsetHeight / 2 - 250;
 
     const url = `${baseURL}/auth/${provider}`;
     const target = `${provider}Login`;
-    const features = `left=${left},top=${top},width=600,height=600`;
+    const features = `left=${left},top=${top},width=500,height=500`;
 
     if (!newWindowRef.current || newWindowRef.current.closed) {
       newWindowRef.current = window.open(url, target, features);
