@@ -2,15 +2,13 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import Button from '@components/common/Button';
 import Login from '@components/Login';
-import { useModal, useModalDispatch } from '@context/ModalContext';
 import { logout } from '@services/auth';
-import { useUserStore } from '@store/.';
+import { useModalStore, useUserStore } from '@store/.';
 import { User } from '@typings/db';
 import { styles } from './styles';
 
 export default function Header() {
-  const modal = useModal();
-  const modalDispatch = useModalDispatch();
+  const { modal, openModal, closeModal } = useModalStore();
   const { user, setUser } = useUserStore(state => ({
     user: state.user,
     setUser: state.setUser,
@@ -19,7 +17,7 @@ export default function Header() {
   function onClickLogin(e: React.MouseEvent) {
     if (e.target instanceof HTMLElement) {
       if (e.target.dataset.modal) {
-        modalDispatch({ type: 'OPEN_MODAL', name: e.target.dataset.modal });
+        openModal(e.target.dataset.modal);
       }
     }
   }
@@ -39,7 +37,7 @@ export default function Header() {
 
   function successLogin(user: User) {
     setUser(user);
-    modalDispatch({ type: 'CLOSE_MODAL' });
+    closeModal();
   }
 
   return (

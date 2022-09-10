@@ -4,8 +4,8 @@ import KakaoLoginIcon from '@assets/kakao-login.svg';
 import NaverLoginIcon from '@assets/naver-login.svg';
 import Button from '@components/common/Button';
 import Modal from '@components/common/Modal';
-import { useModalDispatch } from '@context/ModalContext';
 import { baseURL } from '@services/index';
+import { useModalStore } from '@store/.';
 import { User } from '@typings/db';
 import { styles } from './styles';
 
@@ -26,13 +26,9 @@ interface MessageData {
 type Provider = 'google' | 'kakao' | 'naver';
 
 export default function Login({ modal, onSuccess }: Props) {
-  const modalDispatch = useModalDispatch();
+  const closeModal = useModalStore(state => state.closeModal);
   const newWindowRef = useRef<Window | null>();
   const prevWindowTargetRef = useRef<string>();
-
-  function closeModal() {
-    modalDispatch({ type: 'CLOSE_MODAL' });
-  }
 
   const receiveMessage = useCallback(
     (e: MessageEvent<MessageData>) => {
