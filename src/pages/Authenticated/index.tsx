@@ -1,14 +1,14 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { login } from '@services/auth';
 
 export default function Authenticated() {
-  const windowOpenerRef = useRef<Window | null>(window.opener);
-
   useEffect(() => {
+    const windowOpener: Window | null = window.opener;
+
     login()
       .then(res => {
-        if (res.data.success && windowOpenerRef.current) {
-          windowOpenerRef.current.postMessage(
+        if (res.data.success && windowOpener) {
+          windowOpener.postMessage(
             { authenticated: true, user: res.data.user },
             {
               targetOrigin: window.location.origin,
@@ -17,8 +17,8 @@ export default function Authenticated() {
         }
       })
       .catch(error => {
-        if (windowOpenerRef.current) {
-          windowOpenerRef.current.postMessage(
+        if (windowOpener) {
+          windowOpener.postMessage(
             {
               authenticated: false,
               user: null,
