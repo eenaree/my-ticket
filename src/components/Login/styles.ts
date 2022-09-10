@@ -46,31 +46,22 @@ export const styles = {
   }),
   modalBody: css({
     padding: '1.25rem',
+  }),
+  providerList: css({
     li: {
       margin: '1.25rem 0',
-      padding: '0.5rem 0',
       borderRadius: 4,
     },
-    button: css({
+    button: {
       display: 'flex',
       alignItems: 'center',
       width: '100%',
       padding: 0,
-    }),
-    span: css({
+      backgroundColor: 'var(--provider-bg)',
+      color: 'var(--provider-color)',
+    },
+    span: {
       flex: '1 1 auto',
-    }),
-  }),
-  kakaoLogin: css({
-    backgroundColor: '#fee500',
-  }),
-  naverLogin: css({
-    backgroundColor: '#03c75a',
-    button: css({
-      color: colors.white,
-    }),
-  }),
-  googleLogin: css({
-    backgroundColor: colors.gray[100],
+    },
   }),
 };
