@@ -2,7 +2,6 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@layouts/*": ["src/layouts/*"],
       "@components/*": ["src/components/*"],
       "@pages/*": ["src/pages/*"],
       "@store/*": ["src/store/*"],
@@ -15,7 +14,6 @@
       "@assets/*": ["src/assets/*"]
     },
     "outDir": "build",
-    "allowJs": true,
     "target": "es5",
     "module": "es2022",
     "moduleResolution": "node",
