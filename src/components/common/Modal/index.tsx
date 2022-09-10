@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { useModalDispatch } from '@context/ModalContext';
 import useDelayUnmount from '@hooks/useDelayUnmount';
 import useDetectOutsideClick from '@hooks/useDetectOutsideClick';
+import { useModalStore } from '@store/.';
 import { styles } from './styles';
 
 interface Props {
@@ -14,14 +14,10 @@ export default function Modal({
   children,
   modal,
 }: React.PropsWithChildren<Props>) {
-  const modalDispatch = useModalDispatch();
+  const closeModal = useModalStore(state => state.closeModal);
   const isMounted = useDelayUnmount(modal);
   const setModalRef = useDetectOutsideClick(isMounted, closeModal);
   const scrollBarWidth = useRef(window.innerWidth - document.body.clientWidth);
-
-  function closeModal() {
-    modalDispatch({ type: 'CLOSE_MODAL' });
-  }
 
   useEffect(() => {
     const scrollable = window.innerHeight !== document.body.scrollHeight;
