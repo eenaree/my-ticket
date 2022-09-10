@@ -10,3 +10,7 @@ interface AuthResponse {
 export function login() {
   return authAPI.get<AuthResponse>('/login');
 }
+
+export function logout() {
+  return authAPI.post<Omit<AuthResponse, 'user'>>('/logout');
+}
