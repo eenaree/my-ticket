@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import GoogleLoginIcon from '@assets/google-login.svg';
 import KakaoLoginIcon from '@assets/kakao-login.svg';
 import NaverLoginIcon from '@assets/naver-login.svg';
@@ -11,6 +11,7 @@ import { styles } from './styles';
 
 interface Props {
   modal: boolean;
+  onSuccess(user: User): void;
 }
 
 interface LoginProps {
@@ -24,7 +25,7 @@ interface MessageData {
 
 type Provider = 'google' | 'kakao' | 'naver';
 
-export default function Login({ modal }: Props) {
+export default function Login({ modal, onSuccess }: Props) {
   const modalDispatch = useModalDispatch();
   const newWindowRef = useRef<Window | null>();
   const prevWindowTargetRef = useRef<string>();
@@ -33,19 +34,22 @@ export default function Login({ modal }: Props) {
     modalDispatch({ type: 'CLOSE_MODAL' });
   }
 
-  function receiveMessage(e: MessageEvent<MessageData>) {
-    // 팝업창으로부터 메세지를 수신받아 로그인 처리
-    if (e.origin != window.location.origin) return;
-    if (newWindowRef.current) {
-      if (e.data.authenticated && e.data.user) {
-        console.log('user', e.data.user);
-      } else {
-        window.alert('로그인에 실패했습니다.');
+  const receiveMessage = useCallback(
+    (e: MessageEvent<MessageData>) => {
+      // 팝업창으로부터 메세지를 수신받아 로그인 처리
+      if (e.origin != window.location.origin) return;
+      if (newWindowRef.current) {
+        if (e.data.authenticated && e.data.user) {
+          onSuccess(e.data.user);
+        } else {
+          window.alert('로그인에 실패했습니다.');
+        }
+        newWindowRef.current.close();
+        newWindowRef.current = null; // 로그인 성공 후에도, 실패 메세지 코드 블록이 실행되는 버그가 발생하여 이를 방지하기 위한 코드
       }
-      newWindowRef.current.close();
-      newWindowRef.current = null; // 로그인 성공 후에도, 실패 메세지 코드 블록이 실행되는 버그가 발생하여 이를 방지하기 위한 코드
-    }
-  }
+    },
+    [onSuccess]
+  );
 
   function onClickLogin(provider: Provider) {
     const left = document.body.offsetWidth / 2 - 250;
@@ -75,7 +79,7 @@ export default function Login({ modal }: Props) {
     return () => {
       window.removeEventListener('message', receiveMessage);
     };
-  }, []);
+  }, [receiveMessage]);
 
   return (
     <Modal modal={modal}>
