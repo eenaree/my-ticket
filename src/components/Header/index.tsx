@@ -9,10 +9,7 @@ import { styles } from './styles';
 
 export default function Header() {
   const { modal, openModal, closeModal } = useModalStore();
-  const { user, setUser } = useUserStore(state => ({
-    user: state.user,
-    setUser: state.setUser,
-  }));
+  const { user, setUser } = useUserStore();
 
   function onClickLogin(e: React.MouseEvent) {
     if (e.target instanceof HTMLElement) {
