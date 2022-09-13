@@ -3,6 +3,7 @@ import { colors } from '@styles/theme';
 import { styles } from './styles';
 
 interface Props {
+  fullWidth?: boolean;
   bgColor?: string;
   size?: keyof typeof sizes;
 }
@@ -24,6 +25,7 @@ const sizes = {
 
 export default function Button({
   children,
+  fullWidth,
   bgColor,
   size = 'medium',
   ...props
@@ -32,6 +34,7 @@ export default function Button({
     <button
       css={styles.button}
       style={{
+        ['--button-width']: fullWidth ? '100%' : 'auto',
         ['--button-height']: sizes[size].height,
         ['--button-fontSize']: sizes[size].fontSize,
         ['--button-color']: bgColor ? colors.white : colors.black,

@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 
 export const styles = {
   button: css({
+    width: 'var(--button-width)',
     height: 'var(--button-height)',
     paddingLeft: '1rem',
     paddingRight: '1rem',
