@@ -59,4 +59,7 @@ export const styles = {
       transform: 'rotate(45deg)',
     },
   }),
+  modalBody: css({
+    padding: '1.25rem',
+  }),
 };
