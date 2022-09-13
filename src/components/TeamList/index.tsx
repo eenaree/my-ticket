@@ -30,7 +30,7 @@ export function TeamList() {
         <li
           key={team.team}
           css={styles.teamBox}
-          style={{ backgroundImage: `url(${team.logo})` }}
+          style={{ '--team-logo': `url(${team.logo})` }}
         >
           <span>{team.name}</span>
         </li>

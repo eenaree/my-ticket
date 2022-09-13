@@ -10,6 +10,7 @@ export const styles = {
     width: '50%',
     height: 150,
     textAlign: 'center',
+    backgroundImage: 'var(--team-logo)',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: '50% 50%',
     fontWeight: 600,
