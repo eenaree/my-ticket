@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Link } from 'react-router-dom';
 import Button from '@components/common/Button';
 import Login from '@components/Login';
@@ -11,12 +10,8 @@ export default function Header() {
   const { modal, openModal, closeModal } = useModalStore();
   const { user, setUser } = useUserStore();
 
-  function onClickLogin(e: React.MouseEvent) {
-    if (e.target instanceof HTMLElement) {
-      if (e.target.dataset.modal) {
-        openModal(e.target.dataset.modal);
-      }
-    }
+  function onClickLogin() {
+    openModal('login');
   }
 
   function onClickLogout() {
@@ -46,9 +41,7 @@ export default function Header() {
         {user ? (
           <Button onClick={onClickLogout}>로그아웃</Button>
         ) : (
-          <Button onClick={onClickLogin} data-modal="login">
-            로그인
-          </Button>
+          <Button onClick={onClickLogin}>로그인</Button>
         )}
         <Login modal={modal === 'login'} onSuccess={successLogin} />
       </div>
