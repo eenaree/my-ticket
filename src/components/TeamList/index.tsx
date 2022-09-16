@@ -9,6 +9,7 @@ import OB from '@assets/team/OB.png';
 import SK from '@assets/team/SK.png';
 import SS from '@assets/team/SS.png';
 import WO from '@assets/team/WO.png';
+import Checkbox from '@components/common/Checkbox';
 import { useTeamStore } from '@store/useTeamStore';
 import { styles } from './styles';
 
@@ -50,17 +51,14 @@ export function TeamList() {
           css={styles.teamBox}
           style={{ '--team-logo': `url(${team.logo})` }}
         >
-          <label htmlFor={team.team}>
-            <input
-              type="checkbox"
-              id={team.team}
-              name="team"
-              value={team.team}
-              checked={myTeams.includes(team.team)}
-              onChange={onChangeTeam}
-            />
-            <span>{team.name}</span>
-          </label>
+          <Checkbox
+            id={team.team}
+            name="team"
+            value={team.team}
+            checked={myTeams.includes(team.team)}
+            onChange={onChangeTeam}
+            label={team.name}
+          />
         </li>
       ))}
     </ul>
