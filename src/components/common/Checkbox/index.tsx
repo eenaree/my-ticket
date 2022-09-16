@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 interface Props {
-  id?: string; // 'id' is missing in props validation 오류 구문 때문에 추가함
   label?: string;
 }
 
