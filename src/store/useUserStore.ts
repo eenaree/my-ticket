@@ -1,17 +1,28 @@
 import create from 'zustand';
 import { persist } from 'zustand/middleware';
+import { logout } from '@services/auth';
 import { User } from '@typings/db';
 
 interface UserState {
   user: User | null;
-  setUser: (user: User | null) => void;
+  loginUser(user: User): void;
+  logoutUser(): Promise<void>;
 }
 
 export const useUserStore = create<UserState>()(
   persist(
     set => ({
       user: null,
-      setUser: user => set({ user }),
+      loginUser: user => set({ user }),
+      logoutUser: async () => {
+        try {
+          await logout();
+          set({ user: null });
+        } catch (error) {
+          window.alert('로그아웃 처리에 실패했습니다.');
+          console.error(error);
+        }
+      },
     }),
     {
       name: 'user-storage',
