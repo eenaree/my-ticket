@@ -32,7 +32,10 @@ export function TeamList() {
           css={styles.teamBox}
           style={{ '--team-logo': `url(${team.logo})` }}
         >
-          <span>{team.name}</span>
+          <label htmlFor={team.team}>
+            <span>{team.name}</span>
+            <input type="checkbox" id={team.team} />
+          </label>
         </li>
       ))}
     </ul>
