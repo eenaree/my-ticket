@@ -1,34 +1,24 @@
 import { Link } from 'react-router-dom';
 import Button from '@components/common/Button';
 import Login from '@components/Login';
-import { logout } from '@services/auth';
 import { useModalStore, useUserStore } from '@store/.';
 import { User } from '@typings/db';
 import { styles } from './styles';
 
 export default function Header() {
-  const { modal, openModal, closeModal } = useModalStore();
-  const { user, setUser } = useUserStore();
+  const modal = useModalStore(state => state.modal);
+  const openModal = useModalStore(state => state.openModal);
+  const closeModal = useModalStore(state => state.closeModal);
+  const user = useUserStore(state => state.user);
+  const loginUser = useUserStore(state => state.loginUser);
+  const logoutUser = useUserStore(state => state.logoutUser);
 
   function onClickLogin() {
     openModal('login');
   }
 
-  function onClickLogout() {
-    logout()
-      .then(res => {
-        if (res.data.success) {
-          setUser(null);
-        }
-      })
-      .catch(error => {
-        window.alert('로그아웃 처리에 실패했습니다.');
-        console.error(error);
-      });
-  }
-
   function successLogin(user: User) {
-    setUser(user);
+    loginUser(user);
     closeModal();
   }
 
@@ -39,7 +29,7 @@ export default function Header() {
           <Link to="/">MyTicket</Link>
         </h1>
         {user ? (
-          <Button onClick={onClickLogout}>로그아웃</Button>
+          <Button onClick={logoutUser}>로그아웃</Button>
         ) : (
           <Button onClick={onClickLogin}>로그인</Button>
         )}
