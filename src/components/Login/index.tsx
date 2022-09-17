@@ -24,7 +24,7 @@ interface ProviderProps {
 }
 
 interface MessageData {
-  authenticated: boolean;
+  from: string;
   user: User | null;
 }
 
@@ -61,16 +61,20 @@ export default function Login({ modal, onSuccess }: Props) {
 
   const receiveMessage = useCallback(
     (e: MessageEvent<MessageData>) => {
-      // 팝업창으로부터 메세지를 수신받아 로그인 처리
       if (e.origin != window.location.origin) return;
-      if (newWindowRef.current) {
-        if (e.data.authenticated && e.data.user) {
-          onSuccess(e.data.user);
-        } else {
-          window.alert('로그인에 실패했습니다.');
+
+      // Chrome browser에서만 발생하는 문제
+      // 계정 로그인 클릭 후, 같은 origin인 현재 window로부터 메세지가 한번 수신되는 문제가 발생함.
+      // 메세지를 보낸 window가 인증 팝업창이 아닌 경우에는 메세지를 수신받지 않도록 함.
+      if (e.source == newWindowRef.current) {
+        if (e.data.from == 'authentication') {
+          if (e.data.user) {
+            onSuccess(e.data.user);
+          } else {
+            window.alert('로그인에 실패했습니다.');
+          }
+          newWindowRef.current?.close();
         }
-        newWindowRef.current.close();
-        newWindowRef.current = null; // 로그인 성공 후에도, 실패 메세지 코드 블록이 실행되는 버그가 발생하여 이를 방지하기 위한 코드
       }
     },
     [onSuccess]
@@ -95,12 +99,10 @@ export default function Login({ modal, onSuccess }: Props) {
     }
 
     prevWindowTargetRef.current = target;
-
-    window.removeEventListener('message', receiveMessage);
-    window.addEventListener('message', receiveMessage);
   }
 
   useEffect(() => {
+    window.addEventListener('message', receiveMessage);
     return () => {
       window.removeEventListener('message', receiveMessage);
     };

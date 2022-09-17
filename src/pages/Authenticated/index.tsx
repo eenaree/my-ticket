@@ -7,23 +7,18 @@ export default function Authenticated() {
 
     login()
       .then(res => {
-        if (res.data.success && windowOpener) {
+        if (windowOpener) {
           windowOpener.postMessage(
-            { authenticated: true, user: res.data.user },
-            {
-              targetOrigin: window.location.origin,
-            }
+            { from: 'authentication', user: res.data.user },
+            window.location.origin
           );
         }
       })
       .catch(error => {
         if (windowOpener) {
           windowOpener.postMessage(
-            {
-              authenticated: false,
-              user: null,
-            },
-            { targetOrigin: window.location.origin }
+            { from: 'authentication', user: null },
+            window.location.origin
           );
         }
         console.error(error);
