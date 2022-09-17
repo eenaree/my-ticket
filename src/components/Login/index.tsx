@@ -57,7 +57,7 @@ const providers = [
 export default function Login({ modal, onSuccess }: Props) {
   const closeModal = useModalStore(state => state.closeModal);
   const newWindowRef = useRef<Window | null>();
-  const prevWindowTargetRef = useRef<string>();
+  const prevWindowUrlRef = useRef<string>();
 
   const receiveMessage = useCallback(
     (e: MessageEvent<MessageData>) => {
@@ -85,20 +85,19 @@ export default function Login({ modal, onSuccess }: Props) {
     const top = document.body.offsetHeight / 2 - 250;
 
     const url = `${baseURL}/auth/${provider}`;
-    const target = `${provider}Login`;
+    const target = 'authentication';
     const features = `left=${left},top=${top},width=500,height=500`;
 
     if (!newWindowRef.current || newWindowRef.current.closed) {
       newWindowRef.current = window.open(url, target, features);
-    } else if (prevWindowTargetRef.current == target) {
+    } else if (prevWindowUrlRef.current == url) {
       newWindowRef.current.focus();
     } else {
-      newWindowRef.current.close();
       newWindowRef.current = window.open(url, target, features);
       newWindowRef.current?.focus();
     }
 
-    prevWindowTargetRef.current = target;
+    prevWindowUrlRef.current = url;
   }
 
   useEffect(() => {
