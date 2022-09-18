@@ -19,6 +19,7 @@ export const styles = {
   modalWrapper: css({
     width: '100vw',
     height: '100vh',
+    overflowY: 'auto',
     [mq('sm')]: {
       width: 700,
       height: 'auto',
