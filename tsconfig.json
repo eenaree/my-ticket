@@ -27,7 +27,8 @@
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS",
-      "esModuleInterop": true
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
     }
   },
   "include": ["./src/**/*"]

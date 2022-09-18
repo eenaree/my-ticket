@@ -1,5 +1,6 @@
 import path from 'path';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
 import dotenv from 'dotenv';
 import { createEmotionPlugin } from 'emotion-ts-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
@@ -103,13 +104,27 @@ const developmentConfig: webpack.Configuration = {
     hot: true,
     port: 4000,
     historyApiFallback: true,
+    static: {
+      directory: path.join(__dirname, 'src', 'assets'),
+      publicPath: '/images',
+    },
   },
 };
 
 const productionConfig: webpack.Configuration = {
   mode: 'production',
   devtool: 'hidden-source-map',
-  plugins: [new BundleAnalyzerPlugin({ analyzerMode: 'static' })],
+  plugins: [
+    new BundleAnalyzerPlugin({ analyzerMode: 'static' }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, 'src', 'assets', 'team'),
+          to: 'images/team',
+        },
+      ],
+    }),
+  ],
   output: {
     path: path.join(__dirname, 'build'),
     filename: '[name].[chunkhash].js',
