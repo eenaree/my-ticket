@@ -1,12 +1,12 @@
 import Header from '@components/Header';
-import TeamPicker from '@components/TeamPicker';
+import MyTeams from '@components/MyTeams';
 
 export default function Main() {
   return (
     <>
       <Header />
       <main>
-        <TeamPicker />
+        <MyTeams />
       </main>
     </>
   );
