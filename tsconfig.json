@@ -11,7 +11,8 @@
       "@utils/*": ["src/utils/*"],
       "@typings/*": ["src/typings/*"],
       "@styles/*": ["src/styles/*"],
-      "@assets/*": ["src/assets/*"]
+      "@assets/*": ["src/assets/*"],
+      "@constants/*": ["src/constants/*"]
     },
     "outDir": "build",
     "target": "es5",

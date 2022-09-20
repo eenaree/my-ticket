@@ -3,19 +3,6 @@ import { mq } from '@styles/mediaQueries';
 import { colors } from '@styles/theme';
 
 export const styles = {
-  inner: css({
-    padding: '10px 20px',
-    backgroundColor: colors.gray[100],
-    textAlign: 'center',
-    h2: {
-      fontSize: '1.6rem',
-      fontWeight: 600,
-    },
-    [mq('lg')]: {
-      width: 1200,
-      margin: '0 auto',
-    },
-  }),
   modalWrapper: css({
     width: '100vw',
     height: '100vh',

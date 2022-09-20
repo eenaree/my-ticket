@@ -1,36 +1,44 @@
+import { useRef } from 'react';
 import Button from '@components/common/Button';
 import Modal from '@components/common/Modal';
 import { TeamList } from '@components/TeamList';
-import { useModalStore } from '@store/useModalStore';
+import { useModalStore, useTeamStore } from '@store/.';
 import { colors } from '@styles/theme';
+import { Team } from '@typings/db';
 import { styles } from './styles';
 
 export default function TeamPicker() {
-  const { modal, openModal, closeModal } = useModalStore();
+  const modal = useModalStore(state => state.modal);
+  const closeModal = useModalStore(state => state.closeModal);
+  const myTeams = useTeamStore(state => state.myTeams);
+  const changedTeamsRef = useRef(new Set(myTeams));
 
-  function onClick() {
-    openModal('team-picker');
+  function onChangeTeam(
+    e: React.ChangeEvent<HTMLInputElement & { value: Team }>
+  ) {
+    if (e.target.checked) {
+      changedTeamsRef.current?.add(e.target.value);
+    } else {
+      changedTeamsRef.current?.delete(e.target.value);
+    }
   }
 
   return (
-    <section css={styles.inner}>
-      <Button onClick={onClick}>팀 선택하기</Button>
-      <Modal modal={modal === 'team-picker'}>
-        <section css={styles.modalWrapper}>
-          <div css={styles.modalHeader}>
-            <h2>팀 선택</h2>
-            <button css={styles.closeButton} onClick={closeModal} />
-          </div>
-          <div css={styles.modalBody}>
-            <form>
-              <TeamList />
-              <Button bgColor={colors.indigo[600]} fullWidth>
-                저장
-              </Button>
-            </form>
-          </div>
-        </section>
-      </Modal>
-    </section>
+    <Modal modal={modal === 'team-picker'}>
+      <section css={styles.modalWrapper}>
+        <div css={styles.modalHeader}>
+          <h2>팀 선택</h2>
+          <button css={styles.closeButton} onClick={closeModal} />
+        </div>
+        <div css={styles.modalBody}>
+          <form>
+            <TeamList onChangeTeam={onChangeTeam} />
+            <Button bgColor={colors.indigo[600]} fullWidth>
+              저장
+            </Button>
+          </form>
+        </div>
+      </section>
+    </Modal>
   );
 }
