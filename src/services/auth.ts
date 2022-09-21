@@ -1,5 +1,5 @@
 import { User } from '@typings/db';
-import { authAPI } from '.';
+import { httpClient } from '.';
 
 interface AuthResponse {
   success: boolean;
@@ -8,9 +8,9 @@ interface AuthResponse {
 }
 
 export function login() {
-  return authAPI.get<AuthResponse>('/login');
+  return httpClient.get<AuthResponse>('/auth/login');
 }
 
 export function logout() {
-  return authAPI.post<Omit<AuthResponse, 'user'>>('/logout');
+  return httpClient.post<Omit<AuthResponse, 'user'>>('/auth/logout');
 }

@@ -4,7 +4,7 @@ import KakaoLoginIcon from '@assets/kakao-login.svg';
 import NaverLoginIcon from '@assets/naver-login.svg';
 import Button from '@components/common/Button';
 import Modal from '@components/common/Modal';
-import { baseURL } from '@services/index';
+import { BASE_URL } from '@constants/global';
 import { useModalStore } from '@store/.';
 import { colors } from '@styles/theme';
 import { User } from '@typings/db';
@@ -84,7 +84,7 @@ export default function Login({ modal, onSuccess }: Props) {
     const left = document.body.offsetWidth / 2 - 250;
     const top = document.body.offsetHeight / 2 - 250;
 
-    const url = `${baseURL}/auth/${provider}`;
+    const url = `${BASE_URL}/auth/${provider}`;
     const target = 'authentication';
     const features = `left=${left},top=${top},width=500,height=500`;
 
