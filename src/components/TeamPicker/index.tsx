@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import Button from '@components/common/Button';
 import Modal from '@components/common/Modal';
-import { TeamList } from '@components/TeamList';
+import TeamPickerList from '@components/TeamPickerList';
 import { useModalStore, useTeamStore } from '@store/.';
 import { colors } from '@styles/theme';
 import { Team } from '@typings/db';
@@ -32,7 +32,7 @@ export default function TeamPicker() {
         </div>
         <div css={styles.modalBody}>
           <form>
-            <TeamList onChangeTeam={onChangeTeam} />
+            <TeamPickerList onChangeTeam={onChangeTeam} />
             <Button bgColor={colors.indigo[600]} fullWidth>
               저장
             </Button>

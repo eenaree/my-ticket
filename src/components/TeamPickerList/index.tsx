@@ -7,7 +7,7 @@ interface Props {
   onChangeTeam: React.ChangeEventHandler<HTMLInputElement>;
 }
 
-export function TeamList({ onChangeTeam }: Props) {
+export default function TeamPickerList({ onChangeTeam }: Props) {
   const myTeams = useTeamStore(state => state.myTeams);
 
   return (
