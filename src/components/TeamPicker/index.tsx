@@ -9,6 +9,7 @@ import { styles } from './styles';
 export default function TeamPicker() {
   const closeModal = useModalStore(state => state.closeModal);
   const myTeams = useTeamStore(state => state.myTeams);
+  const changeMyTeams = useTeamStore(state => state.changeMyTeams);
   const [changedTeams, setChangedTeams] = useState(myTeams);
 
   function onChangeTeam(
@@ -21,6 +22,23 @@ export default function TeamPicker() {
     }
   }
 
+  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    const isChanged =
+      myTeams.length !== changedTeams.length ||
+      (changedTeams.length > 0 &&
+        changedTeams.some(changedTeam => {
+          return myTeams.findIndex(exTeam => exTeam == changedTeam) == -1;
+        }));
+
+    if (isChanged) {
+      changeMyTeams(changedTeams);
+    } else {
+      closeModal();
+    }
+  }
+
   return (
     <section css={styles.modalWrapper}>
       <div css={styles.modalHeader}>
@@ -28,7 +46,7 @@ export default function TeamPicker() {
         <button css={styles.closeButton} onClick={closeModal} />
       </div>
       <div css={styles.modalBody}>
-        <form>
+        <form onSubmit={onSubmit}>
           <TeamPickerList teams={changedTeams} onChangeTeam={onChangeTeam} />
           <Button bgColor={colors.indigo[600]} fullWidth>
             저장
