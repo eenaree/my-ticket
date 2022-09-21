@@ -1,15 +1,14 @@
 import Checkbox from '@components/common/Checkbox';
 import { TEAM_LIST } from '@constants/global';
-import { useTeamStore } from '@store/.';
+import { Team } from '@typings/db';
 import { styles } from './styles';
 
 interface Props {
+  teams: Team[];
   onChangeTeam: React.ChangeEventHandler<HTMLInputElement>;
 }
 
-export function TeamList({ onChangeTeam }: Props) {
-  const myTeams = useTeamStore(state => state.myTeams);
-
+export default function TeamPickerList({ teams, onChangeTeam }: Props) {
   return (
     <ul css={styles.teamList}>
       {TEAM_LIST.map(team => (
@@ -22,7 +21,7 @@ export function TeamList({ onChangeTeam }: Props) {
             id={team.team}
             name="team"
             value={team.team}
-            defaultChecked={myTeams.includes(team.team)}
+            checked={teams.includes(team.team)}
             onChange={onChangeTeam}
             label={team.name}
           />
