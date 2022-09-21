@@ -4,14 +4,13 @@ import KakaoLoginIcon from '@assets/kakao-login.svg';
 import NaverLoginIcon from '@assets/naver-login.svg';
 import Button from '@components/common/Button';
 import Modal from '@components/common/Modal';
-import { baseURL } from '@services/index';
+import { BASE_URL } from '@constants/global';
 import { useModalStore } from '@store/.';
 import { colors } from '@styles/theme';
 import { User } from '@typings/db';
 import { styles } from './styles';
 
 interface Props {
-  modal: boolean;
   onSuccess(user: User): void;
 }
 
@@ -54,7 +53,8 @@ const providers = [
   },
 ] as const;
 
-export default function Login({ modal, onSuccess }: Props) {
+export default function Login({ onSuccess }: Props) {
+  const modal = useModalStore(state => state.modal);
   const closeModal = useModalStore(state => state.closeModal);
   const newWindowRef = useRef<Window | null>();
   const prevWindowUrlRef = useRef<string>();
@@ -84,7 +84,7 @@ export default function Login({ modal, onSuccess }: Props) {
     const left = document.body.offsetWidth / 2 - 250;
     const top = document.body.offsetHeight / 2 - 250;
 
-    const url = `${baseURL}/auth/${provider}`;
+    const url = `${BASE_URL}/auth/${provider}`;
     const target = 'authentication';
     const features = `left=${left},top=${top},width=500,height=500`;
 
@@ -108,7 +108,7 @@ export default function Login({ modal, onSuccess }: Props) {
   }, [receiveMessage]);
 
   return (
-    <Modal modal={modal}>
+    <Modal modal={modal === 'login'}>
       <section css={styles.modalWrapper}>
         <div css={styles.modalHeader}>
           <h2>로그인</h2>

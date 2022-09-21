@@ -10,3 +10,5 @@ export const TEAM_LIST = [
   { team: 'HT', name: '기아' },
   { team: 'HH', name: '한화' },
 ] as const;
+
+export const BASE_URL = 'http://localhost:8080/api';

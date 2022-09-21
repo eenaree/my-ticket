@@ -6,7 +6,6 @@ import { User } from '@typings/db';
 import { styles } from './styles';
 
 export default function Header() {
-  const modal = useModalStore(state => state.modal);
   const openModal = useModalStore(state => state.openModal);
   const closeModal = useModalStore(state => state.closeModal);
   const user = useUserStore(state => state.user);
@@ -33,7 +32,7 @@ export default function Header() {
         ) : (
           <Button onClick={onClickLogin}>로그인</Button>
         )}
-        <Login modal={modal === 'login'} onSuccess={successLogin} />
+        <Login onSuccess={successLogin} />
       </div>
     </header>
   );

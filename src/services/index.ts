@@ -1,8 +1,7 @@
 import axios from 'axios';
+import { BASE_URL } from '@constants/global';
 
-export const baseURL = 'http://localhost:8080/api';
-
-export const authAPI = axios.create({
-  baseURL: `${baseURL}/auth`,
+export const httpClient = axios.create({
+  baseURL: BASE_URL,
   withCredentials: true,
 });
