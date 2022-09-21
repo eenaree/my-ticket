@@ -11,7 +11,6 @@ import { User } from '@typings/db';
 import { styles } from './styles';
 
 interface Props {
-  modal: boolean;
   onSuccess(user: User): void;
 }
 
@@ -54,7 +53,8 @@ const providers = [
   },
 ] as const;
 
-export default function Login({ modal, onSuccess }: Props) {
+export default function Login({ onSuccess }: Props) {
+  const modal = useModalStore(state => state.modal);
   const closeModal = useModalStore(state => state.closeModal);
   const newWindowRef = useRef<Window | null>();
   const prevWindowUrlRef = useRef<string>();
@@ -108,7 +108,7 @@ export default function Login({ modal, onSuccess }: Props) {
   }, [receiveMessage]);
 
   return (
-    <Modal modal={modal}>
+    <Modal modal={modal === 'login'}>
       <section css={styles.modalWrapper}>
         <div css={styles.modalHeader}>
           <h2>로그인</h2>
