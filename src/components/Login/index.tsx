@@ -3,7 +3,6 @@ import GoogleLoginIcon from '@assets/google-login.svg';
 import KakaoLoginIcon from '@assets/kakao-login.svg';
 import NaverLoginIcon from '@assets/naver-login.svg';
 import Button from '@components/common/Button';
-import Modal from '@components/common/Modal';
 import { BASE_URL } from '@constants/global';
 import { useModalStore } from '@store/.';
 import { colors } from '@styles/theme';
@@ -54,7 +53,6 @@ const providers = [
 ] as const;
 
 export default function Login({ onSuccess }: Props) {
-  const modal = useModalStore(state => state.modal);
   const closeModal = useModalStore(state => state.closeModal);
   const newWindowRef = useRef<Window | null>();
   const prevWindowUrlRef = useRef<string>();
@@ -108,28 +106,26 @@ export default function Login({ onSuccess }: Props) {
   }, [receiveMessage]);
 
   return (
-    <Modal modal={modal === 'login'}>
-      <section css={styles.modalWrapper}>
-        <div css={styles.modalHeader}>
-          <h2>로그인</h2>
-          <button css={styles.closeButton} onClick={closeModal} />
-        </div>
-        <div css={styles.modalBody}>
-          <ul css={styles.providerList}>
-            {providers.map(provider => (
-              <LoginProvider
-                key={provider.provider}
-                Icon={provider.Icon}
-                onClickLogin={() => onClickLogin(provider.provider)}
-                bgColor={provider.bgColor}
-                text={provider.text}
-                color={provider.color}
-              />
-            ))}
-          </ul>
-        </div>
-      </section>
-    </Modal>
+    <section css={styles.modalWrapper}>
+      <div css={styles.modalHeader}>
+        <h2>로그인</h2>
+        <button css={styles.closeButton} onClick={closeModal} />
+      </div>
+      <div css={styles.modalBody}>
+        <ul css={styles.providerList}>
+          {providers.map(provider => (
+            <LoginProvider
+              key={provider.provider}
+              Icon={provider.Icon}
+              onClickLogin={() => onClickLogin(provider.provider)}
+              bgColor={provider.bgColor}
+              text={provider.text}
+              color={provider.color}
+            />
+          ))}
+        </ul>
+      </div>
+    </section>
   );
 }
 
