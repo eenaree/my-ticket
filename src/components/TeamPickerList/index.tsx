@@ -1,14 +1,18 @@
 import Checkbox from '@components/common/Checkbox';
 import { TEAM_LIST } from '@constants/global';
-import { Team } from '@typings/db';
+import { Team, TeamList } from '@typings/db';
 import { styles } from './styles';
 
 interface Props {
-  teams: Team[];
+  teams: TeamList;
   onChangeTeam: React.ChangeEventHandler<HTMLInputElement>;
 }
 
 export default function TeamPickerList({ teams, onChangeTeam }: Props) {
+  function getTeamIsChecked(team: Team) {
+    return teams.findIndex(teamInfo => teamInfo.team == team) !== -1;
+  }
+
   return (
     <ul css={styles.teamList}>
       {TEAM_LIST.map(team => (
@@ -21,9 +25,10 @@ export default function TeamPickerList({ teams, onChangeTeam }: Props) {
             id={team.team}
             name="team"
             value={team.team}
-            checked={teams.includes(team.team)}
+            checked={getTeamIsChecked(team.team)}
             onChange={onChangeTeam}
             label={team.name}
+            data-value={team.name}
           />
         </li>
       ))}

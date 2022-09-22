@@ -8,3 +8,8 @@ export interface User {
 }
 
 export type Team = typeof TEAM_LIST[number]['team'];
+export type TeamName = typeof TEAM_LIST[number]['name'];
+export type TeamList = Array<{
+  team: Team;
+  name: TeamName;
+}>;
