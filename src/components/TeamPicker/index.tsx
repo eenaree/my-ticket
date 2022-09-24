@@ -3,7 +3,7 @@ import Button from '@components/common/Button';
 import TeamPickerList from '@components/TeamPickerList';
 import { useModalStore, useTeamStore } from '@store/.';
 import { colors } from '@styles/theme';
-import { Team } from '@typings/db';
+import { Team, TeamName } from '@typings/db';
 import { styles } from './styles';
 
 export default function TeamPicker() {
@@ -13,12 +13,15 @@ export default function TeamPicker() {
   const [changedTeams, setChangedTeams] = useState(myTeams);
 
   function onChangeTeam(
-    e: React.ChangeEvent<HTMLInputElement & { value: Team }>
+    e: React.ChangeEvent<
+      HTMLInputElement & { value: Team; dataset: { value: TeamName } }
+    >
   ) {
+    const team = { team: e.target.value, name: e.target.dataset.value };
     if (e.target.checked) {
-      setChangedTeams(prev => prev.concat(e.target.value));
+      setChangedTeams(prev => prev.concat(team));
     } else {
-      setChangedTeams(prev => prev.filter(exTeam => exTeam !== e.target.value));
+      setChangedTeams(prev => prev.filter(exTeam => exTeam.team !== team.team));
     }
   }
 

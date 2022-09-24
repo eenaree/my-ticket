@@ -20,9 +20,9 @@ export default function MyTeamList() {
   return (
     <ul css={styles.teamListWrapper}>
       {myTeams.map(myTeam => (
-        <li key={myTeam} css={styles.teamList}>
+        <li key={myTeam.team} css={styles.teamList}>
           <button>
-            <img src={`/images/team/${myTeam}.png`} alt={myTeam} />
+            <img src={`/images/team/${myTeam.team}.png`} alt={myTeam.name} />
           </button>
         </li>
       ))}
