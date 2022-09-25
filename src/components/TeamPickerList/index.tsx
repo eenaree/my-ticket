@@ -16,20 +16,20 @@ export default function TeamPickerList({ teams, onChangeTeam }: Props) {
   return (
     <ul css={styles.teamList}>
       {TEAM_LIST.map(team => (
-        <li
-          key={team.team}
-          css={styles.teamBox}
-          style={{ '--team-logo': `url(/images/team/${team.team}.png)` }}
-        >
-          <Checkbox
-            id={team.team}
-            name="team"
-            value={team.team}
-            checked={getTeamIsChecked(team.team)}
-            onChange={onChangeTeam}
-            label={team.name}
-            data-value={team.name}
-          />
+        <li key={team.team}>
+          <span
+            style={{ '--team-logo': `url('/images/team/${team.team}.png')` }}
+          >
+            <Checkbox
+              id={team.team}
+              name="team"
+              value={team.team}
+              checked={getTeamIsChecked(team.team)}
+              onChange={onChangeTeam}
+              label={team.name}
+              data-value={team.name}
+            />
+          </span>
         </li>
       ))}
     </ul>
