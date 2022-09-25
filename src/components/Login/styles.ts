@@ -1,22 +1,18 @@
 import { css } from '@emotion/react';
-import { mq } from '@styles/mediaQueries';
 import { colors } from '@styles/theme';
 
 export const styles = {
   modalWrapper: css({
-    width: '100vw',
-    height: '100vh',
-    [mq('xs')]: {
-      width: 360,
-      height: 'auto',
-    },
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
   }),
   modalHeader: css({
     display: 'flex',
     justifyContent: 'space-between',
     backgroundColor: colors.gray[300],
     borderRadius: '4px 4px 0 0',
-    padding: '1.25rem',
+    padding: '1rem',
     h2: {
       fontFamily: 'UtoBalsamTint',
       fontWeight: 600,
@@ -45,7 +41,7 @@ export const styles = {
     },
   }),
   modalBody: css({
-    padding: '1.25rem',
+    padding: '1rem',
   }),
   providerList: css({
     li: {

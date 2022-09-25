@@ -1,21 +1,16 @@
 import { css } from '@emotion/react';
-import { mq } from '@styles/mediaQueries';
 import { colors } from '@styles/theme';
 
 export const styles = {
   modalWrapper: css({
-    width: '100vw',
-    height: '100vh',
-    overflowY: 'auto',
-    [mq('sm')]: {
-      width: 700,
-      height: 'auto',
-    },
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
   }),
   modalHeader: css({
     display: 'flex',
     justifyContent: 'space-between',
-    padding: '1.25rem',
+    padding: '1rem',
     backgroundColor: colors.gray[300],
     borderRadius: '4px 4px 0 0',
     textAlign: 'center',
@@ -48,6 +43,7 @@ export const styles = {
     },
   }),
   modalBody: css({
-    padding: '1.25rem',
+    padding: '1rem',
+    overflowY: 'auto',
   }),
 };
