@@ -1,4 +1,5 @@
 import { css, keyframes } from '@emotion/react';
+import { mq } from '@styles/mediaQueries';
 import { colors } from '@styles/theme';
 
 const modalFadeIn = keyframes({
@@ -29,18 +30,23 @@ export const styles = {
       bottom: 0,
       left: 0,
       right: 0,
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
       backgroundColor: 'rgba(0,0,0,0.4)',
       animationName: modal ? modalFadeIn : modalFadeOut,
       animationDuration: '0.6s',
     }),
   modalContainer: (modal: boolean) =>
     css({
+      display: 'flex',
+      maxHeight: 'calc(100% - 1rem)',
+      margin: '0.5rem',
       backgroundColor: colors.white,
       borderRadius: 4,
       animationName: modal ? modalBoxSlideDown : modalBoxSlideUp,
       animationDuration: '0.6s',
+      [mq('xs')]: {
+        maxWidth: 500,
+        maxHeight: 'calc(100% - 16rem)',
+        margin: '8rem auto',
+      },
     }),
 };
