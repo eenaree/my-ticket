@@ -26,9 +26,7 @@ export default function TeamPicker() {
     }
   }
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-
+  function savePickedTeams() {
     const isChanged =
       myTeams.length !== pickedTeams.length ||
       (pickedTeams.length > 0 &&
@@ -51,12 +49,14 @@ export default function TeamPicker() {
       </div>
       <div css={styles.modalBody}>
         <PickTeamList teams={pickedTeams} />
-        <form onSubmit={onSubmit}>
-          <TeamPickerList teams={pickedTeams} onChangeTeam={onChangeTeam} />
-          <Button bgColor={colors.indigo[600]} fullWidth>
-            저장
-          </Button>
-        </form>
+        <TeamPickerList teams={pickedTeams} onChangeTeam={onChangeTeam} />
+        <Button
+          bgColor={colors.indigo[600]}
+          fullWidth
+          onClick={savePickedTeams}
+        >
+          저장
+        </Button>
       </div>
     </section>
   );
