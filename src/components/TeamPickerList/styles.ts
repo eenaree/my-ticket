@@ -6,37 +6,40 @@ export const styles = {
   teamList: css({
     display: 'flex',
     flexWrap: 'wrap',
-  }),
-  teamBox: css({
-    width: '40%',
-    height: 150,
-    margin: '2% 5%',
-    border: `1px solid ${colors.gray[300]}`,
-    borderRadius: 4,
-    textAlign: 'center',
-    backgroundImage: 'var(--team-logo)',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: '50% 35%',
-    fontWeight: 600,
-    label: {
+    marginLeft: '-1rem',
+    li: {
+      width: '50%',
+      height: 150,
+      marginBottom: '1rem',
+      [mq('xs')]: {
+        width: '20%',
+      },
+    },
+    span: {
       position: 'relative',
+      display: 'block',
+      height: '100%',
+      margin: '0 0 1rem 1rem',
+      borderRadius: 4,
+      border: `1px solid ${colors.gray[300]}`,
+      backgroundImage: 'var(--team-logo)',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: '50% 35%',
+      backgroundSize: '70px 50px',
+    },
+    label: {
+      height: '100%',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'end',
-      height: '100%',
+      paddingBottom: '1.25rem',
+      fontWeight: 600,
       cursor: 'pointer',
-    },
-    span: {
-      paddingBottom: 20,
     },
     input: {
       position: 'absolute',
       top: 5,
       right: 5,
-    },
-    [mq('sm')]: {
-      width: '16%',
-      margin: '2%',
     },
   }),
 };

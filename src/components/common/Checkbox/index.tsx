@@ -9,9 +9,9 @@ export default function Checkbox({
   ...props
 }: React.ComponentPropsWithRef<'input'> & React.PropsWithChildren<Props>) {
   return (
-    <label htmlFor={props.id}>
+    <>
+      <label htmlFor={props.id}>{label}</label>
       <input type="checkbox" {...props} />
-      {label && <span>{label}</span>}
-    </label>
+    </>
   );
 }
