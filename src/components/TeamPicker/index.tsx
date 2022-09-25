@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Button from '@components/common/Button';
+import PickTeamList from '@components/PickTeamList';
 import TeamPickerList from '@components/TeamPickerList';
 import { useModalStore, useTeamStore } from '@store/.';
 import { colors } from '@styles/theme';
@@ -49,6 +50,7 @@ export default function TeamPicker() {
         <button css={styles.closeButton} onClick={closeModal} />
       </div>
       <div css={styles.modalBody}>
+        <PickTeamList teams={changedTeams} />
         <form onSubmit={onSubmit}>
           <TeamPickerList teams={changedTeams} onChangeTeam={onChangeTeam} />
           <Button bgColor={colors.indigo[600]} fullWidth>
