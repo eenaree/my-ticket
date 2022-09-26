@@ -32,7 +32,7 @@ export const styles = {
       animationName: modal ? modalFadeIn : modalFadeOut,
       animationDuration: '0.6s',
     }),
-  modalContainer: (modal: boolean) =>
+  modalDialog: (modal: boolean) =>
     css({
       display: 'flex',
       height: '100%',
