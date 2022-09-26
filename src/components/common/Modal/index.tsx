@@ -37,7 +37,7 @@ export default function Modal({
 
   return createPortal(
     <div css={styles.modalOverlay(modal)}>
-      <div css={styles.modalContainer(modal)} ref={setModalRef}>
+      <div css={styles.modalDialog(modal)} ref={setModalRef}>
         {children}
       </div>
     </div>,

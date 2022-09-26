@@ -1,11 +1,19 @@
 import { css } from '@emotion/react';
+import { mq } from '@styles/mediaQueries';
 import { colors } from '@styles/theme';
 
 export const styles = {
   modalWrapper: css({
-    width: '100%',
     display: 'flex',
     flexDirection: 'column',
+    width: '100%',
+    margin: 'auto 0.5rem',
+    backgroundColor: colors.white,
+    borderRadius: 4,
+    [mq('xs')]: {
+      width: 360,
+      margin: 'auto',
+    },
   }),
   modalHeader: css({
     display: 'flex',

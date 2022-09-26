@@ -1,6 +1,4 @@
 import { css, keyframes } from '@emotion/react';
-import { mq } from '@styles/mediaQueries';
-import { colors } from '@styles/theme';
 
 const modalFadeIn = keyframes({
   from: { opacity: 0 },
@@ -34,19 +32,11 @@ export const styles = {
       animationName: modal ? modalFadeIn : modalFadeOut,
       animationDuration: '0.6s',
     }),
-  modalContainer: (modal: boolean) =>
+  modalDialog: (modal: boolean) =>
     css({
       display: 'flex',
-      maxHeight: 'calc(100% - 1rem)',
-      margin: '0.5rem',
-      backgroundColor: colors.white,
-      borderRadius: 4,
+      height: '100%',
       animationName: modal ? modalBoxSlideDown : modalBoxSlideUp,
       animationDuration: '0.6s',
-      [mq('xs')]: {
-        maxWidth: 500,
-        maxHeight: 'calc(100% - 16rem)',
-        margin: '8rem auto',
-      },
     }),
 };
