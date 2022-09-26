@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Button from '@components/common/Button';
+import PickTeamList from '@components/PickTeamList';
 import TeamPickerList from '@components/TeamPickerList';
 import { useModalStore, useTeamStore } from '@store/.';
 import { colors } from '@styles/theme';
@@ -10,7 +11,7 @@ export default function TeamPicker() {
   const closeModal = useModalStore(state => state.closeModal);
   const myTeams = useTeamStore(state => state.myTeams);
   const changeMyTeams = useTeamStore(state => state.changeMyTeams);
-  const [changedTeams, setChangedTeams] = useState(myTeams);
+  const [pickedTeams, setPickedTeams] = useState(myTeams);
 
   function onChangeTeam(
     e: React.ChangeEvent<
@@ -19,24 +20,22 @@ export default function TeamPicker() {
   ) {
     const team = { team: e.target.value, name: e.target.dataset.value };
     if (e.target.checked) {
-      setChangedTeams(prev => prev.concat(team));
+      setPickedTeams(prev => prev.concat(team));
     } else {
-      setChangedTeams(prev => prev.filter(exTeam => exTeam.team !== team.team));
+      setPickedTeams(prev => prev.filter(exTeam => exTeam.team !== team.team));
     }
   }
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-
+  function savePickedTeams() {
     const isChanged =
-      myTeams.length !== changedTeams.length ||
-      (changedTeams.length > 0 &&
-        changedTeams.some(changedTeam => {
-          return myTeams.findIndex(exTeam => exTeam == changedTeam) == -1;
+      myTeams.length !== pickedTeams.length ||
+      (pickedTeams.length > 0 &&
+        pickedTeams.some(pickedTeam => {
+          return myTeams.findIndex(exTeam => exTeam == pickedTeam) == -1;
         }));
 
     if (isChanged) {
-      changeMyTeams(changedTeams);
+      changeMyTeams(pickedTeams);
     } else {
       closeModal();
     }
@@ -49,12 +48,15 @@ export default function TeamPicker() {
         <button css={styles.closeButton} onClick={closeModal} />
       </div>
       <div css={styles.modalBody}>
-        <form onSubmit={onSubmit}>
-          <TeamPickerList teams={changedTeams} onChangeTeam={onChangeTeam} />
-          <Button bgColor={colors.indigo[600]} fullWidth>
-            저장
-          </Button>
-        </form>
+        <PickTeamList teams={pickedTeams} />
+        <TeamPickerList teams={pickedTeams} onChangeTeam={onChangeTeam} />
+        <Button
+          bgColor={colors.indigo[600]}
+          fullWidth
+          onClick={savePickedTeams}
+        >
+          저장
+        </Button>
       </div>
     </section>
   );
