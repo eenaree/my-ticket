@@ -12,6 +12,7 @@ export const styles = {
     [mq('xs')]: {
       width: 500,
       margin: 'auto',
+      maxHeight: 'calc(100% - 4rem)',
     },
   }),
   modalHeader: css({
