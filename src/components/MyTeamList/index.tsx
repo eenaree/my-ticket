@@ -13,19 +13,21 @@ export default function MyTeamList() {
     }
   }, [user, getMyTeams]);
 
-  if (!user) return <p css={styles.noneTeamList}>로그인이 필요합니다.</p>;
+  if (!user) return <div css={styles.noneTeamList}>로그인이 필요합니다.</div>;
   if (myTeams.length == 0)
-    return <p css={styles.noneTeamList}>선택한 팀이 없습니다.</p>;
+    return <div css={styles.noneTeamList}>선택한 팀이 없습니다.</div>;
 
   return (
-    <ul css={styles.teamListWrapper}>
-      {myTeams.map(myTeam => (
-        <li key={myTeam.team} css={styles.teamList}>
-          <button>
-            <img src={`/images/team/${myTeam.team}.png`} alt={myTeam.name} />
-          </button>
-        </li>
-      ))}
-    </ul>
+    <div>
+      <ul css={styles.teamList}>
+        {myTeams.map(myTeam => (
+          <li key={myTeam.team} css={styles.team}>
+            <button>
+              <img src={`/images/team/${myTeam.team}.png`} alt={myTeam.name} />
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
