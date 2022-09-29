@@ -1,6 +1,7 @@
 import Button from '@components/common/Button';
 import Modal from '@components/common/Modal';
 import Login from '@components/Login';
+import StadiumPicker from '@components/StadiumPicker';
 import { useModalStore } from '@store/useModalStore';
 import { useUserStore } from '@store/useUserStore';
 import { User } from '@typings/db';
@@ -23,9 +24,16 @@ export default function NavBar() {
     closeModal();
   }
 
+  function onClickTicketRegister() {
+    user ? openModal('stadium-picker') : openModal('login');
+  }
+
   return (
     <nav>
       <ul css={styles.navList}>
+        <li>
+          <Button onClick={onClickTicketRegister}>티켓 등록</Button>
+        </li>
         <li>
           {user ? (
             <Button onClick={logoutUser}>로그아웃</Button>
@@ -36,6 +44,9 @@ export default function NavBar() {
       </ul>
       <Modal modal={modal === 'login'}>
         <Login onSuccess={successLogin} />
+      </Modal>
+      <Modal modal={modal === 'stadium-picker'}>
+        <StadiumPicker />
       </Modal>
     </nav>
   );
