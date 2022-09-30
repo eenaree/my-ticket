@@ -36,13 +36,13 @@ const { years, months } = getMatchCalendar();
 
 export default function SetMatchDate() {
   const [matchDate, setMatchDate] = useState({ year: 0, month: 0, date: 0 });
-  const [dates, setDates] = useState(() => {
-    return getDates(matchDate.year, matchDate.month - 1);
-  });
+  const [dates, setDates] = useState<number[]>([]);
 
   function onChangeYear(year: number) {
-    const newDates = getDates(year, matchDate.month - 1);
-    setDates(newDates);
+    if (matchDate.month != 0) {
+      const newDates = getDates(year, matchDate.month - 1);
+      setDates(newDates);
+    }
     setMatchDate(prev => ({
       ...prev,
       year,

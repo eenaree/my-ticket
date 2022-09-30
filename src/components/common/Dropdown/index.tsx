@@ -31,6 +31,7 @@ export default function Dropdown({
       <button
         onClick={toggleDropdownVisible}
         css={styles.toggleButton(visible)}
+        disabled={list.length == 0}
       >
         {selectedValue}
       </button>

@@ -15,6 +15,10 @@ export const styles = {
       textAlign: 'inherit',
       height: 40,
       padding: '0 1rem',
+      '&:disabled': {
+        opacity: '.5',
+        cursor: 'not-allowed',
+      },
       '&:after': {
         content: '""',
         position: 'absolute',
