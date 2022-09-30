@@ -51,10 +51,12 @@ export default function SetMatchDate() {
 
   function onChangeMonth(month: number) {
     const newDates = getDates(matchDate.year, month - 1);
+    const hasFewerDates = newDates.length < matchDate.date;
     setDates(newDates);
     setMatchDate(prev => ({
       ...prev,
       month,
+      date: hasFewerDates ? 1 : prev.date,
     }));
   }
 
