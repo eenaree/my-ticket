@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import useDetectOutsideClick from '@hooks/useDetectOutsideClick';
 import { styles } from './styles';
 
 interface Props {
@@ -15,6 +16,7 @@ export default function Dropdown({
   width = '100%',
 }: Props) {
   const [visible, setVisible] = useState(false);
+  const setDropdownRef = useDetectOutsideClick(visible, toggleDropdownVisible);
 
   function toggleDropdownVisible() {
     setVisible(prev => !prev);
@@ -27,7 +29,11 @@ export default function Dropdown({
   }
 
   return (
-    <div css={styles.dropdownWrapper} style={{ '--dropdown-width': width }}>
+    <div
+      css={styles.dropdownWrapper}
+      style={{ '--dropdown-width': width }}
+      ref={setDropdownRef}
+    >
       <button
         onClick={toggleDropdownVisible}
         css={styles.toggleButton(visible)}
