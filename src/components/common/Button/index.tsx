@@ -32,6 +32,7 @@ export default function Button({
 }: React.PropsWithChildren<Props> & React.ComponentPropsWithRef<'button'>) {
   return (
     <button
+      type="button"
       css={styles.button}
       style={{
         ['--button-width']: fullWidth ? '100%' : 'auto',
