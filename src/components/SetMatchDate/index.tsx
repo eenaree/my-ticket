@@ -41,7 +41,10 @@ const { years, months } = getMatchCalendar();
 export default function SetMatchDate() {
   const { matchDate } = useTicketForm();
   const ticketFormDispatch = useTicketFormDispatch();
-  const [dates, setDates] = useState<number[]>([]);
+  const [dates, setDates] = useState<number[]>(() => {
+    if (matchDate.month) return getDates(matchDate.year, matchDate.month);
+    return [];
+  });
 
   function onChangeYear(year: number) {
     if (matchDate.month != 0) {
