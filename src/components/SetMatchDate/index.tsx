@@ -1,5 +1,9 @@
 import { useState } from 'react';
 import Dropdown from '@components/common/Dropdown';
+import {
+  useTicketForm,
+  useTicketFormDispatch,
+} from '@context/TicketFormContext';
 import { styles } from './styles';
 
 function getMatchCalendar() {
@@ -35,7 +39,8 @@ function getDates(year: number, month: number) {
 const { years, months } = getMatchCalendar();
 
 export default function SetMatchDate() {
-  const [matchDate, setMatchDate] = useState({ year: 0, month: 0, date: 0 });
+  const { matchDate } = useTicketForm();
+  const ticketFormDispatch = useTicketFormDispatch();
   const [dates, setDates] = useState<number[]>([]);
 
   function onChangeYear(year: number) {
@@ -43,25 +48,22 @@ export default function SetMatchDate() {
       const newDates = getDates(year, matchDate.month - 1);
       setDates(newDates);
     }
-    setMatchDate(prev => ({
-      ...prev,
-      year,
-    }));
+    ticketFormDispatch({ type: 'SET_MATCH_YEAR', year });
   }
 
   function onChangeMonth(month: number) {
     const newDates = getDates(matchDate.year, month - 1);
     const hasFewerDates = newDates.length < matchDate.date;
     setDates(newDates);
-    setMatchDate(prev => ({
-      ...prev,
+    ticketFormDispatch({
+      type: 'SET_MATCH_MONTH',
       month,
-      date: hasFewerDates ? 1 : prev.date,
-    }));
+      date: hasFewerDates ? 1 : matchDate.date,
+    });
   }
 
   function onChangeDate(date: number) {
-    setMatchDate(prev => ({ ...prev, date }));
+    ticketFormDispatch({ type: 'SET_MATCH_DATE', date });
   }
 
   return (
