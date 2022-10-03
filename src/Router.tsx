@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { TicketFormProvider } from '@context/TicketFormContext';
 import Authenticated from '@pages/Authenticated';
 import Layout from '@pages/Layout';
 import Main from '@pages/Main';
@@ -10,7 +11,14 @@ export default function Router() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Main />} />
-          <Route path="register" element={<TicketRegister />} />
+          <Route
+            path="register"
+            element={
+              <TicketFormProvider>
+                <TicketRegister />
+              </TicketFormProvider>
+            }
+          />
         </Route>
         <Route path="authenticated" element={<Authenticated />} />
       </Routes>

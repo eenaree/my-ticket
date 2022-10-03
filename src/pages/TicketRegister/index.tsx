@@ -1,11 +1,59 @@
+import { useState } from 'react';
+import Button from '@components/common/Button';
 import SetMatchDate from '@components/SetMatchDate';
+import { useTicketForm } from '@context/TicketFormContext';
+import { colors } from '@styles/theme';
 import { styles } from './styles';
 
+function renderTicketRegisterForm(step: number) {
+  switch (step) {
+    case 1:
+      return <SetMatchDate />;
+  }
+}
+
 export default function TicketRegister() {
+  const [formStep, setFormStep] = useState(1);
+  const ticketForm = useTicketForm();
+
+  function prevStep() {
+    setFormStep(prev => prev - 1);
+  }
+
+  function nextStep() {
+    setFormStep(prev => prev + 1);
+  }
+
+  function validateForm() {
+    if (formStep == 1) {
+      const { year, month, date } = ticketForm.matchDate;
+      if (year && month && date) return true;
+      return false;
+    }
+  }
+
   return (
     <section css={styles.wrapper}>
       <h2>티켓 등록</h2>
-      <SetMatchDate />
+      <form>
+        {renderTicketRegisterForm(formStep)}
+        <div css={styles.formNavigation}>
+          <Button
+            onClick={prevStep}
+            disabled={formStep <= 1}
+            bgColor={colors.gray[800]}
+          >
+            이전
+          </Button>
+          <Button
+            onClick={nextStep}
+            disabled={!validateForm()}
+            bgColor={colors.gray[800]}
+          >
+            다음
+          </Button>
+        </div>
+      </form>
     </section>
   );
 }

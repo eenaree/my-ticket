@@ -35,6 +35,7 @@ export default function Dropdown({
       ref={setDropdownRef}
     >
       <button
+        type="button"
         onClick={toggleDropdownVisible}
         css={styles.toggleButton(visible)}
         disabled={list.length == 0}
@@ -45,6 +46,7 @@ export default function Dropdown({
         {list.map(value => (
           <li key={value}>
             <button
+              type="button"
               onClick={() => onChange(value)}
               css={styles.value(value === selectedValue)}
             >
