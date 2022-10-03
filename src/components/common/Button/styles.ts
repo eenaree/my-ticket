@@ -11,5 +11,8 @@ export const styles = {
     backgroundColor: 'var(--button-bg)',
     fontWeight: 600,
     fontSize: 'var(--button-fontSize)',
+    '&:disabled': {
+      cursor: 'not-allowed',
+    },
   }),
 };
