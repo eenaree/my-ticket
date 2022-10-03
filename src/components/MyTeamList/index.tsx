@@ -21,9 +21,9 @@ export default function MyTeamList() {
     <div>
       <ul css={styles.teamList}>
         {myTeams.map(myTeam => (
-          <li key={myTeam.team} css={styles.team}>
+          <li key={myTeam[0]} css={styles.team}>
             <button>
-              <img src={`/images/team/${myTeam.team}.png`} alt={myTeam.name} />
+              <img src={`/images/team/${myTeam[0]}.png`} alt={myTeam[1]} />
             </button>
           </li>
         ))}

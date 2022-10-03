@@ -1,4 +1,4 @@
-import { TEAM_LIST } from '@constants/global';
+import { KBO_LEAGUE_TEAMS } from '@constants/global';
 
 export interface User {
   id: number;
@@ -7,9 +7,6 @@ export interface User {
   provider: string | null;
 }
 
-export type Team = typeof TEAM_LIST[number]['team'];
-export type TeamName = typeof TEAM_LIST[number]['name'];
-export type TeamList = Array<{
-  team: Team;
-  name: TeamName;
-}>;
+export type TeamId = keyof typeof KBO_LEAGUE_TEAMS;
+export type TeamName = typeof KBO_LEAGUE_TEAMS[TeamId];
+export type Teams = Array<[TeamId, TeamName]>;

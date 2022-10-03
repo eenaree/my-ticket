@@ -1,8 +1,8 @@
-import { TeamList } from '@typings/db';
+import { Teams } from '@typings/db';
 import { styles } from './styles';
 
 interface Props {
-  teams: TeamList;
+  teams: Teams;
 }
 
 export default function PickTeamList({ teams }: Props) {
@@ -13,11 +13,11 @@ export default function PickTeamList({ teams }: Props) {
   return (
     <ul css={styles.teamList}>
       {teams.map((team, index) => (
-        <li key={team.team}>
+        <li key={team[0]}>
           <button>
             <em>{index + 1}</em>
-            <img src={`/images/team/${team.team}.png`} alt={team.name} />
-            <span>{team.name}</span>
+            <img src={`/images/team/${team[0]}.png`} alt={team[1]} />
+            <span>{team[1]}</span>
           </button>
         </li>
       ))}
