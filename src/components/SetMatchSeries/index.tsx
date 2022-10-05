@@ -1,7 +1,14 @@
+import RadioButton from '@components/common/RadioButton';
 import {
   useTicketForm,
   useTicketFormDispatch,
 } from '@context/TicketFormContext';
+import { styles } from './styles';
+
+interface RadioButtonGroupProps {
+  checkedValue: string;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
+}
 
 const KBO_POSTSEASON_SERIES = [
   '와일드카드 결정전',
@@ -21,21 +28,28 @@ export default function SetMatchSeries() {
   return (
     <div>
       <h3>시리즈를 선택하세요</h3>
-      <div>
-        {KBO_POSTSEASON_SERIES.map(series => (
-          <span key={series}>
-            <input
-              type="radio"
-              name="series"
-              id={series}
-              value={series}
-              checked={matchSeries == series}
-              onChange={onChangeMatchSeries}
-            />
-            <label htmlFor={series}>{series}</label>
-          </span>
-        ))}
-      </div>
+      <RadioButtonGroup
+        checkedValue={matchSeries}
+        onChange={onChangeMatchSeries}
+      />
+    </div>
+  );
+}
+
+function RadioButtonGroup({ checkedValue, onChange }: RadioButtonGroupProps) {
+  return (
+    <div css={styles.radioButtonWrapper}>
+      {KBO_POSTSEASON_SERIES.map(series => (
+        <RadioButton
+          key={series}
+          id={series}
+          value={series}
+          name="series"
+          checked={checkedValue == series}
+          onChange={onChange}
+          label={series}
+        />
+      ))}
     </div>
   );
 }
