@@ -52,6 +52,7 @@ const ticketFormReducer: React.Reducer<TicketFormContext, TicketFormActions> = (
       return {
         ...state,
         matchSeason: action.season,
+        matchSeries: '',
       };
     case 'SET_MATCH_SERIES':
       return {
