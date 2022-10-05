@@ -6,12 +6,16 @@ interface TicketFormContext {
     month: number;
     date: number;
   };
+  matchSeason: string;
+  matchSeries: string;
 }
 
 type TicketFormActions =
   | { type: 'SET_MATCH_YEAR'; year: number }
   | { type: 'SET_MATCH_MONTH'; month: number; date: number }
-  | { type: 'SET_MATCH_DATE'; date: number };
+  | { type: 'SET_MATCH_DATE'; date: number }
+  | { type: 'SET_MATCH_SEASON'; season: string }
+  | { type: 'SET_MATCH_SERIES'; series: string };
 
 const TicketFormContext = createContext<TicketFormContext | undefined>(
   undefined
@@ -44,6 +48,16 @@ const ticketFormReducer: React.Reducer<TicketFormContext, TicketFormActions> = (
         ...state,
         matchDate: { ...state.matchDate, date: action.date },
       };
+    case 'SET_MATCH_SEASON':
+      return {
+        ...state,
+        matchSeason: action.season,
+      };
+    case 'SET_MATCH_SERIES':
+      return {
+        ...state,
+        matchSeries: action.series,
+      };
   }
 };
 
@@ -52,6 +66,8 @@ export function TicketFormProvider({
 }: React.PropsWithChildren<unknown>) {
   const [state, dispatch] = useReducer(ticketFormReducer, {
     matchDate: { year: 0, month: 0, date: 0 },
+    matchSeason: '',
+    matchSeries: '',
   });
 
   return (

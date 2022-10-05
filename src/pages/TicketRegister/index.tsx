@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Button from '@components/common/Button';
 import SetMatchDate from '@components/SetMatchDate';
+import SetMatchSeason from '@components/SetMatchSeason';
 import { useTicketForm } from '@context/TicketFormContext';
 import { colors } from '@styles/theme';
 import { styles } from './styles';
@@ -8,6 +9,8 @@ import { styles } from './styles';
 function renderTicketRegisterForm(step: number) {
   switch (step) {
     case 1:
+      return <SetMatchSeason />;
+    case 2:
       return <SetMatchDate />;
   }
 }
@@ -26,6 +29,15 @@ export default function TicketRegister() {
 
   function validateForm() {
     if (formStep == 1) {
+      const { matchSeason, matchSeries } = ticketForm;
+      if (
+        matchSeason == '정규시즌' ||
+        (matchSeason == '포스트시즌' && matchSeries)
+      )
+        return true;
+      return false;
+    }
+    if (formStep == 2) {
       const { year, month, date } = ticketForm.matchDate;
       if (year && month && date) return true;
       return false;
