@@ -53,6 +53,11 @@ export default function TicketRegister() {
       if (homeTeam && awayTeam && stadium) return true;
       return false;
     }
+    if (formStep == 4) {
+      const { myTeam, opponentTeam } = ticketForm;
+      if (myTeam && opponentTeam) return true;
+      return false;
+    }
   }
 
   return (
