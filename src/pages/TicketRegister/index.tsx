@@ -3,6 +3,7 @@ import Button from '@components/common/Button';
 import SetAwayTeam from '@components/SetAwayTeam';
 import SetMatchDate from '@components/SetMatchDate';
 import SetMatchSeason from '@components/SetMatchSeason';
+import SetMyTeam from '@components/SetMyTeam';
 import { useTicketForm } from '@context/TicketFormContext';
 import { colors } from '@styles/theme';
 import { styles } from './styles';
@@ -15,6 +16,8 @@ function renderTicketRegisterForm(step: number) {
       return <SetMatchDate />;
     case 3:
       return <SetAwayTeam />;
+    case 4:
+      return <SetMyTeam />;
   }
 }
 
