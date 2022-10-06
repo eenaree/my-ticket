@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Button from '@components/common/Button';
+import SetAwayTeam from '@components/SetAwayTeam';
 import SetMatchDate from '@components/SetMatchDate';
 import SetMatchSeason from '@components/SetMatchSeason';
 import { useTicketForm } from '@context/TicketFormContext';
@@ -12,6 +13,8 @@ function renderTicketRegisterForm(step: number) {
       return <SetMatchSeason />;
     case 2:
       return <SetMatchDate />;
+    case 3:
+      return <SetAwayTeam />;
   }
 }
 
@@ -40,6 +43,11 @@ export default function TicketRegister() {
     if (formStep == 2) {
       const { year, month, date } = ticketForm.matchDate;
       if (year && month && date) return true;
+      return false;
+    }
+    if (formStep == 3) {
+      const { homeTeam, awayTeam, stadium } = ticketForm;
+      if (homeTeam && awayTeam && stadium) return true;
       return false;
     }
   }

@@ -1,4 +1,12 @@
 import { createContext, useContext, useReducer } from 'react';
+import { useLocation } from 'react-router-dom';
+import { TeamId, Teams } from '@typings/db';
+
+export interface TicketFormLocationState {
+  homeTeam: Teams[number];
+  awayTeams: Teams;
+  stadium: string;
+}
 
 interface TicketFormContext {
   matchDate: {
@@ -8,6 +16,9 @@ interface TicketFormContext {
   };
   matchSeason: string;
   matchSeries: string;
+  homeTeam: TeamId | undefined;
+  awayTeam: TeamId | undefined;
+  stadium: string;
 }
 
 type TicketFormActions =
@@ -15,7 +26,11 @@ type TicketFormActions =
   | { type: 'SET_MATCH_MONTH'; month: number; date: number }
   | { type: 'SET_MATCH_DATE'; date: number }
   | { type: 'SET_MATCH_SEASON'; season: string }
-  | { type: 'SET_MATCH_SERIES'; series: string };
+  | { type: 'SET_MATCH_SERIES'; series: string }
+  | {
+      type: 'SET_AWAY_TEAM';
+      awayTeam: TeamId;
+    };
 
 const TicketFormContext = createContext<TicketFormContext | undefined>(
   undefined
@@ -59,16 +74,27 @@ const ticketFormReducer: React.Reducer<TicketFormContext, TicketFormActions> = (
         ...state,
         matchSeries: action.series,
       };
+    case 'SET_AWAY_TEAM':
+      return {
+        ...state,
+        awayTeam: action.awayTeam,
+      };
   }
 };
 
 export function TicketFormProvider({
   children,
 }: React.PropsWithChildren<unknown>) {
+  const location = useLocation();
+  const ticketFormState = location.state as TicketFormLocationState;
+
   const [state, dispatch] = useReducer(ticketFormReducer, {
     matchDate: { year: 0, month: 0, date: 0 },
     matchSeason: '',
     matchSeries: '',
+    homeTeam: ticketFormState.homeTeam[0],
+    awayTeam: undefined,
+    stadium: ticketFormState.stadium,
   });
 
   return (
