@@ -10,9 +10,8 @@ export const styles = {
       cursor: 'pointer',
       '&:checked': {
         '+ label': {
-          borderColor: colors.indigo[300],
-          background: colors.indigo[300],
-          color: colors.white,
+          border: `2px solid ${colors.indigo[300]}`,
+          background: colors.indigo[50],
           fontWeight: 600,
         },
       },
@@ -32,7 +31,7 @@ export const styles = {
       boxShadow: '7px 7px 15px rgba(0,0,0,0.05)',
       textAlign: 'center',
       cursor: 'pointer',
-      transition: '.5s',
+      transition: 'background .5s',
     },
   }),
 };
