@@ -81,6 +81,8 @@ const ticketFormReducer: React.Reducer<TicketFormContext, TicketFormActions> = (
       return {
         ...state,
         awayTeam: action.awayTeam,
+        myTeam: undefined,
+        opponentTeam: undefined,
       };
     case 'SET_MYTEAM':
       return {
