@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Button from '@components/common/Button';
 import SetAwayTeam from '@components/SetAwayTeam';
 import SetMatchDate from '@components/SetMatchDate';
+import SetMatchScore from '@components/SetMatchScore';
 import SetMatchSeason from '@components/SetMatchSeason';
 import SetMyTeam from '@components/SetMyTeam';
 import { useTicketForm } from '@context/TicketFormContext';
@@ -18,6 +19,8 @@ function renderTicketRegisterForm(step: number) {
       return <SetAwayTeam />;
     case 4:
       return <SetMyTeam />;
+    case 5:
+      return <SetMatchScore />;
   }
 }
 
