@@ -25,6 +25,7 @@ interface TicketFormContext {
     homeTeam: number;
     awayTeam: number;
   };
+  scoreType: string;
 }
 
 type TicketFormActions =
@@ -40,6 +41,12 @@ type TicketFormActions =
   | { type: 'SET_MYTEAM'; team: TeamId }
   | { type: 'SET_HOMETEAM_SCORE'; score: number }
   | { type: 'SET_AWAYTEAM_SCORE'; score: number };
+
+function getScoreType(myScore: number, opponentScore: number) {
+  if (myScore > opponentScore) return '승';
+  if (myScore < opponentScore) return '패';
+  return '무';
+}
 
 const TicketFormContext = createContext<TicketFormContext | undefined>(
   undefined
@@ -101,11 +108,19 @@ const ticketFormReducer: React.Reducer<TicketFormContext, TicketFormActions> = (
       return {
         ...state,
         score: { ...state.score, awayTeam: action.score },
+        scoreType:
+          state.awayTeam == state.myTeam
+            ? getScoreType(action.score, state.score.homeTeam)
+            : getScoreType(state.score.homeTeam, action.score),
       };
     case 'SET_HOMETEAM_SCORE':
       return {
         ...state,
         score: { ...state.score, homeTeam: action.score },
+        scoreType:
+          state.homeTeam == state.myTeam
+            ? getScoreType(action.score, state.score.awayTeam)
+            : getScoreType(state.score.homeTeam, action.score),
       };
   }
 };
@@ -129,6 +144,7 @@ export function TicketFormProvider({
       homeTeam: 0,
       awayTeam: 0,
     },
+    scoreType: '무',
   });
 
   return (
