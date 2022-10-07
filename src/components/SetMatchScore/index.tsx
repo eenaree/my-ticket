@@ -3,7 +3,14 @@ import {
   useTicketForm,
   useTicketFormDispatch,
 } from '@context/TicketFormContext';
+import { TeamId } from '@typings/db';
 import { styles } from './styles';
+
+interface ScordBoardProp {
+  team: TeamId;
+  score: number;
+  onChangeTeamScore: React.ChangeEventHandler;
+}
 
 export default function SetMatchScore() {
   const { homeTeam, awayTeam, score } = useTicketForm();
@@ -26,38 +33,30 @@ export default function SetMatchScore() {
   return (
     <div css={styles.wrapper}>
       <h3>경기 결과를 입력하세요</h3>
-      <div css={styles.scordBoardWrapper}>
-        <div css={styles.scoreBoard}>
-          <input
-            type="text"
-            id="awayTeam"
-            value={score.awayTeam}
-            onChange={onChangeAwayTeamScore}
-          />
-          <label htmlFor="awayTeam">
-            <img
-              src={`/images/team/${awayTeam}.png`}
-              alt={KBO_LEAGUE_TEAMS[awayTeam]}
-            />
-            <span>{KBO_LEAGUE_TEAMS[awayTeam]}</span>
-          </label>
-        </div>
-        <div css={styles.scoreBoard}>
-          <input
-            type="text"
-            id="homeTeam"
-            value={score.homeTeam}
-            onChange={onChangeHomeTeamScore}
-          />
-          <label htmlFor="homeTeam">
-            <img
-              src={`/images/team/${homeTeam}.png`}
-              alt={KBO_LEAGUE_TEAMS[homeTeam]}
-            />
-            <span>{KBO_LEAGUE_TEAMS[homeTeam]}</span>
-          </label>
-        </div>
+      <div css={styles.scoreBoardWrapper}>
+        <ScoreBoard
+          team={awayTeam}
+          score={score.awayTeam}
+          onChangeTeamScore={onChangeAwayTeamScore}
+        />
+        <ScoreBoard
+          team={homeTeam}
+          score={score.homeTeam}
+          onChangeTeamScore={onChangeHomeTeamScore}
+        />
       </div>
+    </div>
+  );
+}
+
+function ScoreBoard({ team, score, onChangeTeamScore }: ScordBoardProp) {
+  return (
+    <div css={styles.scoreBoard}>
+      <input type="text" id={team} value={score} onChange={onChangeTeamScore} />
+      <label htmlFor={team}>
+        <img src={`/images/team/${team}.png`} alt={KBO_LEAGUE_TEAMS[team]} />
+        <span>{KBO_LEAGUE_TEAMS[team]}</span>
+      </label>
     </div>
   );
 }
