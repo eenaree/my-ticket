@@ -3,6 +3,7 @@ import {
   useTicketForm,
   useTicketFormDispatch,
 } from '@context/TicketFormContext';
+import { styles } from './styles';
 
 export default function SetMatchScore() {
   const { homeTeam, awayTeam, score } = useTicketForm();
@@ -23,10 +24,10 @@ export default function SetMatchScore() {
   if (!(homeTeam && awayTeam)) return null;
 
   return (
-    <div>
+    <div css={styles.wrapper}>
       <h3>경기 결과를 입력하세요</h3>
-      <div>
-        <div>
+      <div css={styles.scordBoardWrapper}>
+        <div css={styles.scoreBoard}>
           <input
             type="text"
             id="awayTeam"
@@ -41,7 +42,7 @@ export default function SetMatchScore() {
             <span>{KBO_LEAGUE_TEAMS[awayTeam]}</span>
           </label>
         </div>
-        <div>
+        <div css={styles.scoreBoard}>
           <input
             type="text"
             id="homeTeam"
