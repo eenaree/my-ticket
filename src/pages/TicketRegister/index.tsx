@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Button from '@components/common/Button';
+import ProgressIndicator from '@components/ProgressIndicator';
 import SetAwayTeam from '@components/SetAwayTeam';
 import SetMatchDate from '@components/SetMatchDate';
 import SetMatchScore from '@components/SetMatchScore';
@@ -23,6 +24,8 @@ function renderTicketRegisterForm(step: number) {
       return <SetMatchScore />;
   }
 }
+
+const stepTitles = ['시즌', '경기 날짜', '매치업', '응원팀', '스코어'];
 
 export default function TicketRegister() {
   const [formStep, setFormStep] = useState(1);
@@ -66,6 +69,7 @@ export default function TicketRegister() {
   return (
     <section css={styles.wrapper}>
       <h2>티켓 등록</h2>
+      <ProgressIndicator step={formStep} stepTitles={stepTitles} />
       <form>
         {renderTicketRegisterForm(formStep)}
         <div css={styles.formNavigation}>
