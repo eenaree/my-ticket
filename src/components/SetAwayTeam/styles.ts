@@ -13,10 +13,9 @@ export const styles = {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      justifyContent: 'space-around',
+      justifyContent: 'space-evenly',
       background: colors.gray[50],
       borderRadius: 8,
-      padding: '1rem',
       margin: '0 0 1rem 1rem',
       em: {
         fontWeight: 600,

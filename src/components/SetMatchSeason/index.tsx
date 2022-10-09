@@ -6,11 +6,6 @@ import {
 } from '@context/TicketFormContext';
 import { styles } from './styles';
 
-interface RadioButtonGroupProps {
-  checkedValue: string;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
-}
-
 const KBO_LEAGUE_SEASONS = ['정규시즌', '포스트시즌'];
 
 export default function SetMatchSeason() {
@@ -24,29 +19,20 @@ export default function SetMatchSeason() {
   return (
     <div>
       <h3>경기 시즌을 선택하세요</h3>
-      <RadioButtonGroup
-        checkedValue={matchSeason}
-        onChange={onChangeMatchSeason}
-      />
+      <div css={styles.radioButtonWrapper}>
+        {KBO_LEAGUE_SEASONS.map(season => (
+          <RadioButton
+            key={season}
+            id={season}
+            value={season}
+            name="season"
+            checked={season == matchSeason}
+            onChange={onChangeMatchSeason}
+            label={season}
+          />
+        ))}
+      </div>
       {matchSeason == '포스트시즌' && <SetMatchSeries />}
-    </div>
-  );
-}
-
-function RadioButtonGroup({ checkedValue, onChange }: RadioButtonGroupProps) {
-  return (
-    <div css={styles.radioButtonWrapper}>
-      {KBO_LEAGUE_SEASONS.map(season => (
-        <RadioButton
-          key={season}
-          id={season}
-          value={season}
-          name="season"
-          checked={checkedValue == season}
-          onChange={onChange}
-          label={season}
-        />
-      ))}
     </div>
   );
 }

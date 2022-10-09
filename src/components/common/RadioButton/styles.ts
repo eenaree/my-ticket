@@ -24,7 +24,10 @@ export const styles = {
     },
     label: {
       flex: '1 1 auto',
-      padding: '1rem',
+      minHeight: 60,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
       border: `1px solid ${colors.gray[200]}`,
       borderRadius: 8,
       background: colors.white,
