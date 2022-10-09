@@ -2,11 +2,6 @@ import { css } from '@emotion/react';
 import { mq } from '@styles/mediaQueries';
 
 export const styles = {
-  wrapper: css({
-    h3: {
-      padding: '1rem 0',
-    },
-  }),
   matchTeams: css({
     display: 'flex',
     marginLeft: '-1rem',

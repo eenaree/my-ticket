@@ -67,23 +67,23 @@ export default function TicketRegister() {
   }
 
   return (
-    <section css={styles.wrapper}>
-      <h2>티켓 등록</h2>
-      <ProgressIndicator step={formStep} stepTitles={stepTitles} />
-      <form>
+    <section>
+      <form css={styles.form}>
+        <h2>티켓 등록</h2>
+        <ProgressIndicator step={formStep} stepTitles={stepTitles} />
         {renderTicketRegisterForm(formStep)}
         <div css={styles.formNavigation}>
           <Button
             onClick={prevStep}
             disabled={formStep <= 1}
-            bgColor={colors.gray[800]}
+            bgColor={colors.gray[600]}
           >
             이전
           </Button>
           <Button
             onClick={nextStep}
             disabled={!validateForm()}
-            bgColor={colors.gray[800]}
+            bgColor={colors.indigo[600]}
           >
             다음
           </Button>

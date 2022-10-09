@@ -42,7 +42,7 @@ export default function SetAwayTeam() {
   }
 
   return (
-    <div css={styles.wrapper}>
+    <div>
       <h3>원정팀을 선택하세요</h3>
       <div css={styles.matchup}>
         <div>
