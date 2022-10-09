@@ -70,7 +70,7 @@ export default function SetMatchDate() {
   }
 
   return (
-    <div css={styles.wrapper}>
+    <div>
       <h3>경기 날짜를 선택하세요</h3>
       <div css={styles.selectCalendar}>
         <Dropdown

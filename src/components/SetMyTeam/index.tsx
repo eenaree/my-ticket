@@ -18,7 +18,7 @@ export default function SetMyTeam() {
   }
 
   return (
-    <div css={styles.wrapper}>
+    <div>
       <h3>응원팀을 선택하세요</h3>
       <div css={styles.matchTeams}>
         {[awayTeam, homeTeam].map(team => (

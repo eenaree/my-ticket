@@ -31,7 +31,7 @@ export default function SetMatchScore() {
   if (!(homeTeam && awayTeam)) return null;
 
   return (
-    <div css={styles.wrapper}>
+    <div>
       <h3>경기 결과를 입력하세요</h3>
       <div css={styles.scoreBoardWrapper}>
         <ScoreBoard

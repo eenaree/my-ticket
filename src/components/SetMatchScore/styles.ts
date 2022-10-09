@@ -3,11 +3,6 @@ import { mq } from '@styles/mediaQueries';
 import { colors } from '@styles/theme';
 
 export const styles = {
-  wrapper: css({
-    h3: {
-      padding: '1rem 0',
-    },
-  }),
   scoreBoardWrapper: css({
     [mq('sm')]: {
       display: 'flex',

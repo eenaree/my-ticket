@@ -2,11 +2,18 @@ import { css } from '@emotion/react';
 import { colors } from '@styles/theme';
 
 export const styles = {
-  wrapper: css({
+  form: css({
     padding: 20,
     h2: {
+      paddingBottom: '1rem',
       fontSize: '1.6rem',
       fontWeight: 600,
+    },
+    h3: {
+      padding: '2rem 0',
+      fontSize: '1.4rem',
+      fontWeight: 600,
+      textAlign: 'center',
     },
   }),
   formNavigation: css({

@@ -22,7 +22,7 @@ export default function SetMatchSeason() {
   }
 
   return (
-    <div css={styles.wrapper}>
+    <div>
       <h3>경기 시즌을 선택하세요</h3>
       <RadioButtonGroup
         checkedValue={matchSeason}

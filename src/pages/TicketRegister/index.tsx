@@ -67,10 +67,10 @@ export default function TicketRegister() {
   }
 
   return (
-    <section css={styles.wrapper}>
-      <h2>티켓 등록</h2>
-      <ProgressIndicator step={formStep} stepTitles={stepTitles} />
-      <form>
+    <section>
+      <form css={styles.form}>
+        <h2>티켓 등록</h2>
+        <ProgressIndicator step={formStep} stepTitles={stepTitles} />
         {renderTicketRegisterForm(formStep)}
         <div css={styles.formNavigation}>
           <Button
