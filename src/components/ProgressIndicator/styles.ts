@@ -20,7 +20,7 @@ export const styles = {
       background: colors.indigo[50],
     },
     [mq('sm')]: {
-      margin: '2rem 0 1em',
+      margin: '1rem 0 2rem',
     },
   }),
   progressBar: css({
@@ -54,7 +54,7 @@ export const styles = {
       display: 'none',
       content: 'attr(data-title)',
       position: 'absolute',
-      bottom: 'calc(100% + 1rem)',
+      top: 'calc(100% + 1rem)',
       width: 'calc(100% + 2rem)',
       textAlign: 'center',
       color: colors.black,
