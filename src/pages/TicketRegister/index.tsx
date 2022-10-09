@@ -64,6 +64,8 @@ export default function TicketRegister() {
       if (myTeam && opponentTeam) return true;
       return false;
     }
+
+    return true;
   }
 
   return (
