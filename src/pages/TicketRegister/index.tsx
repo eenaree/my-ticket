@@ -76,14 +76,14 @@ export default function TicketRegister() {
           <Button
             onClick={prevStep}
             disabled={formStep <= 1}
-            bgColor={colors.gray[800]}
+            bgColor={colors.gray[600]}
           >
             이전
           </Button>
           <Button
             onClick={nextStep}
             disabled={!validateForm()}
-            bgColor={colors.gray[800]}
+            bgColor={colors.indigo[600]}
           >
             다음
           </Button>
