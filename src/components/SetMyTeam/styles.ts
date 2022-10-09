@@ -12,11 +12,11 @@ export const styles = {
     },
   }),
   team: css({
-    height: 114,
+    height: 150,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
     em: {
       fontWeight: 600,
       fontSize: '1.4rem',
