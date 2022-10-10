@@ -1,8 +1,15 @@
 import { KBO_LEAGUE_TEAMS } from '@constants/global';
 import { useTicketForm } from '@context/TicketFormContext';
+import { colors } from '@styles/theme';
 import { styles } from './styles';
 
 const weekdays = ['일', '월', '화', '수', '목', '금', '토'];
+
+const scoreTypes = {
+  승: colors.indigo[800],
+  패: colors.red[800],
+  무: colors.gray[800],
+};
 
 export default function ConfirmTicket() {
   const {
@@ -29,7 +36,9 @@ export default function ConfirmTicket() {
             <span>
               {score.awayTeam} : {score.homeTeam}
             </span>
-            <em>{scoreType}</em>
+            <em style={{ '--score-type': scoreTypes[scoreType] }}>
+              {scoreType}
+            </em>
           </p>
           <p
             css={styles.matchup}

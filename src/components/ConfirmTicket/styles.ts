@@ -63,7 +63,7 @@ export const styles = {
       transform: 'translateY(-50%)',
       width: 30,
       height: 30,
-      background: colors.indigo[800],
+      background: 'var(--score-type)',
       color: colors.white,
       borderRadius: '50%',
     },
