@@ -25,7 +25,7 @@ interface TicketFormContext {
     homeTeam: number;
     awayTeam: number;
   };
-  scoreType: string;
+  scoreType: ReturnType<typeof getScoreType>;
 }
 
 type TicketFormActions =
