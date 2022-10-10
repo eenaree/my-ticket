@@ -4,7 +4,6 @@ import MyTeamList from '@components/MyTeamList';
 import TeamPicker from '@components/TeamPicker';
 import { useModalStore } from '@store/useModalStore';
 import { useUserStore } from '@store/useUserStore';
-import { colors } from '@styles/theme';
 import { styles } from './styles';
 
 export default function Main() {
@@ -21,7 +20,7 @@ export default function Main() {
       <section>
         <header css={styles.title}>
           <h2>나의 팀</h2>
-          <Button onClick={addTeams} bgColor={colors.indigo[600]}>
+          <Button onClick={addTeams} variant="primary">
             팀 추가
           </Button>
           <Modal modal={modal === 'team-picker'}>

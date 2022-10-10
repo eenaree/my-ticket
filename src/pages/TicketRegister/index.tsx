@@ -8,7 +8,6 @@ import SetMatchScore from '@components/SetMatchScore';
 import SetMatchSeason from '@components/SetMatchSeason';
 import SetMyTeam from '@components/SetMyTeam';
 import { useTicketForm } from '@context/TicketFormContext';
-import { colors } from '@styles/theme';
 import { styles } from './styles';
 
 function renderTicketRegisterForm(step: number) {
@@ -82,7 +81,7 @@ export default function TicketRegister() {
           <Button
             onClick={prevStep}
             disabled={formStep <= 1}
-            bgColor={colors.gray[600]}
+            variant="secondary"
           >
             이전
           </Button>
@@ -90,13 +89,13 @@ export default function TicketRegister() {
             <Button
               onClick={nextStep}
               disabled={!validateForm()}
-              bgColor={colors.indigo[600]}
+              variant="primary"
             >
               다음
             </Button>
           )}
           {formStep == lastStep && (
-            <Button type="submit" bgColor={colors.indigo[600]}>
+            <Button type="submit" variant="primary">
               등록
             </Button>
           )}

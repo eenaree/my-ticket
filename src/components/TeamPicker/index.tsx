@@ -3,7 +3,6 @@ import Button from '@components/common/Button';
 import PickTeamList from '@components/PickTeamList';
 import TeamPickerList from '@components/TeamPickerList';
 import { useModalStore, useTeamStore } from '@store/.';
-import { colors } from '@styles/theme';
 import { TeamId, TeamName } from '@typings/db';
 import { styles } from './styles';
 
@@ -54,11 +53,7 @@ export default function TeamPicker() {
       <div css={styles.modalBody}>
         <PickTeamList teams={pickedTeams} />
         <TeamPickerList teams={pickedTeams} onChangeTeam={onChangeTeam} />
-        <Button
-          bgColor={colors.indigo[600]}
-          fullWidth
-          onClick={savePickedTeams}
-        >
+        <Button variant="primary" fullWidth onClick={savePickedTeams}>
           저장
         </Button>
       </div>

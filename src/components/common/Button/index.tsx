@@ -3,7 +3,6 @@ import { styles } from './styles';
 
 interface Props {
   fullWidth?: boolean;
-  bgColor?: string;
   size?: 'small' | 'medium' | 'large';
   variant?: 'primary' | 'secondary' | 'basic';
 }
@@ -11,7 +10,6 @@ interface Props {
 export default function Button({
   children,
   fullWidth,
-  // bgColor,
   size = 'medium',
   variant = 'basic',
   ...props
