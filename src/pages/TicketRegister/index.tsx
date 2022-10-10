@@ -32,6 +32,7 @@ const stepTitles = ['시즌', '경기 날짜', '매치업', '응원팀', '스코
 
 export default function TicketRegister() {
   const [formStep, setFormStep] = useState(1);
+  const lastStep = stepTitles.length;
   const ticketForm = useTicketForm();
 
   function prevStep() {
@@ -85,13 +86,20 @@ export default function TicketRegister() {
           >
             이전
           </Button>
-          <Button
-            onClick={nextStep}
-            disabled={!validateForm()}
-            bgColor={colors.indigo[600]}
-          >
-            다음
-          </Button>
+          {formStep != lastStep && (
+            <Button
+              onClick={nextStep}
+              disabled={!validateForm()}
+              bgColor={colors.indigo[600]}
+            >
+              다음
+            </Button>
+          )}
+          {formStep == lastStep && (
+            <Button type="submit" bgColor={colors.indigo[600]}>
+              등록
+            </Button>
+          )}
         </div>
       </form>
     </section>
