@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import { colors } from '@styles/theme';
 
 export const styles = {
   button: css({
@@ -6,8 +7,6 @@ export const styles = {
     paddingLeft: '1rem',
     paddingRight: '1rem',
     borderRadius: 4,
-    color: 'var(--button-color)',
-    backgroundColor: 'var(--button-bg)',
     fontWeight: 600,
     '&:disabled': {
       cursor: 'not-allowed',
@@ -24,5 +23,21 @@ export const styles = {
   large: css({
     height: '3rem',
     fontSize: '1.25rem',
+  }),
+  primary: css({
+    background: colors.indigo[600],
+    color: colors.white,
+    border: `1px solid ${colors.indigo[600]}`,
+  }),
+  secondary: css({
+    background: colors.white,
+    color: colors.indigo[600],
+    border: `1px solid ${colors.gray[200]}`,
+    boxShadow: '0 2px 6px rgba(0,0,0,0.05)',
+  }),
+  basic: css({
+    background: 'transparent',
+    color: colors.black,
+    border: 'none',
   }),
 };
