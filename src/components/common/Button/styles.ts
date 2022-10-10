@@ -10,6 +10,7 @@ export const styles = {
     fontWeight: 600,
     '&:disabled': {
       cursor: 'not-allowed',
+      color: colors.gray[400],
     },
   }),
   small: css({
@@ -28,6 +29,10 @@ export const styles = {
     background: colors.indigo[600],
     color: colors.white,
     border: `1px solid ${colors.indigo[600]}`,
+    '&:disabled': {
+      background: colors.gray[200],
+      borderColor: colors.gray[200],
+    },
   }),
   secondary: css({
     background: colors.white,
