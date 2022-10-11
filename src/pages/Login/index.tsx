@@ -100,7 +100,7 @@ export default function Login({ onSuccess }: Props) {
 
   useEffect(() => {
     if (user) {
-      navigate('/');
+      navigate('/', { replace: true });
     }
   }, [user]);
 
