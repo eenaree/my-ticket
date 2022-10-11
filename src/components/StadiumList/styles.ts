@@ -3,65 +3,75 @@ import { mq } from '@styles/mediaQueries';
 import { colors } from '@styles/theme';
 
 export const styles = {
-  stadiumSelect: css({
+  stadiumList: css({
     display: 'flex',
     flexWrap: 'wrap',
     marginLeft: '-1rem',
     li: {
+      maxWidth: 'calc(50% - 1rem)',
       width: '50%',
+      height: 160,
+      padding: 10,
       display: 'flex',
       flexDirection: 'column',
-      [mq('md')]: {
-        width: '20%',
-      },
-    },
-    span: {
-      height: 140,
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'end',
-      border: `1px solid ${colors.gray[100]}`,
-      borderRadius: 4,
-      background: `var(--team-logo) no-repeat 50% 0.5rem`,
+      justifyContent: 'flex-end',
+      borderRadius: 8,
+      background: `${colors.white} var(--team-logo) no-repeat 50% 1rem`,
       backgroundSize: '50px 40px',
+      boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
       margin: '0 0 1rem 1rem',
       fontWeight: 600,
-      [mq('sm')]: {
-        height: 240,
-        backgroundPosition: '50% 1.5rem',
-        backgroundSize: 'auto',
-      },
     },
     em: {
-      padding: '0.2rem',
-      margin: '0.1rem 0.5rem',
-      border: `1px solid ${colors.gray[100]}`,
+      height: 30,
+      lineHeight: '30px',
       textAlign: 'center',
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       textOverflow: 'ellipsis',
       fontSize: '.875rem',
-      [mq('sm')]: {
-        padding: '0.5rem',
-        margin: '0.1rem 1rem',
+      '&:first-of-type': {
+        display: 'none',
+        height: 40,
+        '&:after': {
+          content: '""',
+          display: 'block',
+          width: 80,
+          height: 1,
+          margin: '0 auto',
+          transform: 'translateY(5px)',
+          background: colors.gray[300],
+        },
       },
-    },
-    'em:first-of-type': {
-      display: 'none',
-      [mq('sm')]: {
-        display: 'block',
+      '& + em': {
+        margin: '0.5rem 0',
       },
     },
     a: {
-      padding: '0.5rem',
-      margin: '0.5rem',
-      borderRadius: 4,
-      backgroundColor: colors.gray[100],
+      height: 40,
+      lineHeight: '40px',
       textAlign: 'center',
-      fontSize: '.875rem',
-      [mq('sm')]: {
-        margin: '0.5rem 1rem 1rem',
-        fontSize: '1rem',
+      borderRadius: 4,
+      background: colors.gray[100],
+    },
+    [mq('xs')]: {
+      li: {
+        maxWidth: 'calc(33.3% - 1rem)',
+        width: '33.3%',
+        height: 240,
+        backgroundPosition: '50% 1.5rem',
+        backgroundSize: 'auto',
+      },
+      em: {
+        '&:first-of-type': {
+          display: 'block',
+        },
+      },
+    },
+    [mq('md')]: {
+      li: {
+        maxWidth: 'calc(20% - 1rem)',
+        width: '20%',
       },
     },
   }),

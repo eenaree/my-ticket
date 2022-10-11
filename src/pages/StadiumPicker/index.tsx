@@ -1,19 +1,14 @@
 import StadiumList from '@components/StadiumList';
-import { useModalStore } from '@store/.';
 import { styles } from './styles';
 
 export default function StadiumPicker() {
-  const closeModal = useModalStore(state => state.closeModal);
-
   return (
-    <section css={styles.modalWrapper}>
-      <div css={styles.modalHeader}>
-        <h2>구장을 선택하세요</h2>
-        <button css={styles.closeButton} onClick={closeModal} />
+    <section css={styles.wrapper}>
+      <div css={styles.title}>
+        <h2>구장 선택</h2>
+        <p>소유한 티켓의 경기장을 선택하세요</p>
       </div>
-      <div css={styles.modalBody}>
-        <StadiumList />
-      </div>
+      <StadiumList />
     </section>
   );
 }
