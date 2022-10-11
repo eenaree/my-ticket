@@ -1,11 +1,10 @@
 import { useCallback, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import GoogleLoginIcon from '@assets/google-login.svg';
 import KakaoLoginIcon from '@assets/kakao-login.svg';
 import NaverLoginIcon from '@assets/naver-login.svg';
-import Button from '@components/common/Button';
 import { BASE_URL } from '@constants/global';
-import { useModalStore } from '@store/.';
-import { colors } from '@styles/theme';
+import { useUserStore } from '@store/.';
 import { User } from '@typings/db';
 import { styles } from './styles';
 
@@ -14,11 +13,10 @@ interface Props {
 }
 
 interface ProviderProps {
+  provider: Provider;
   Icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
   onClickLogin: React.MouseEventHandler<HTMLButtonElement>;
   text: string;
-  bgColor: string;
-  color: string;
 }
 
 interface MessageData {
@@ -33,29 +31,24 @@ const providers = [
     provider: 'google',
     Icon: GoogleLoginIcon,
     text: '구글 계정으로 로그인',
-    bgColor: colors.gray[100],
-    color: colors.black,
   },
   {
     provider: 'kakao',
     Icon: KakaoLoginIcon,
     text: '카카오 계정으로 로그인',
-    bgColor: '#fee500',
-    color: colors.black,
   },
   {
     provider: 'naver',
     Icon: NaverLoginIcon,
     text: '네이버 아이디로 로그인',
-    bgColor: '#03c75a',
-    color: colors.white,
   },
 ] as const;
 
 export default function Login({ onSuccess }: Props) {
-  const closeModal = useModalStore(state => state.closeModal);
+  const navigate = useNavigate();
+  const user = useUserStore(state => state.user);
   const newWindowRef = useRef<Window | null>();
-  const prevWindowUrlRef = useRef<string>();
+  const prevWindowUrlRef = useRef('');
 
   const receiveMessage = useCallback(
     (e: MessageEvent<MessageData>) => {
@@ -105,46 +98,39 @@ export default function Login({ onSuccess }: Props) {
     };
   }, [receiveMessage]);
 
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+    }
+  }, [user]);
+
   return (
-    <section css={styles.modalWrapper}>
-      <div css={styles.modalHeader}>
-        <h2>로그인</h2>
-        <button css={styles.closeButton} onClick={closeModal} />
-      </div>
-      <div css={styles.modalBody}>
-        <ul css={styles.providerList}>
+    <main css={styles.wrapper}>
+      <article css={styles.loginBox}>
+        <h1 css={styles.logo}>MyTicket</h1>
+        <ul>
           {providers.map(provider => (
             <LoginProvider
               key={provider.provider}
+              provider={provider.provider}
               Icon={provider.Icon}
               onClickLogin={() => onClickLogin(provider.provider)}
-              bgColor={provider.bgColor}
               text={provider.text}
-              color={provider.color}
             />
           ))}
         </ul>
-      </div>
-    </section>
+      </article>
+    </main>
   );
 }
 
-function LoginProvider({
-  Icon,
-  onClickLogin,
-  bgColor,
-  color,
-  text,
-}: ProviderProps) {
+function LoginProvider({ Icon, onClickLogin, text, provider }: ProviderProps) {
   return (
-    <li>
-      <Button
-        onClick={onClickLogin}
-        style={{ ['--provider-bg']: bgColor, ['--provider-color']: color }}
-      >
+    <li css={styles.loginProvider}>
+      <button onClick={onClickLogin} css={styles[provider]}>
         <Icon />
         <span>{text}</span>
-      </Button>
+      </button>
     </li>
   );
 }
