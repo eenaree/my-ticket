@@ -1,7 +1,7 @@
 import Button from '@components/common/Button';
 import Modal from '@components/common/Modal';
-import Login from '@components/Login';
 import StadiumPicker from '@components/StadiumPicker';
+import Login from '@pages/Login';
 import { useModalStore } from '@store/useModalStore';
 import { useUserStore } from '@store/useUserStore';
 import { User } from '@typings/db';
