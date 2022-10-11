@@ -5,6 +5,7 @@ import Layout from '@pages/Layout';
 import Login from '@pages/Login';
 import Main from '@pages/Main';
 import RequireAuth from '@pages/RequireAuth';
+import StadiumPicker from '@pages/StadiumPicker';
 import TicketRegister from '@pages/TicketRegister';
 import { useUserStore } from './store';
 
@@ -17,14 +18,17 @@ export default function Router() {
         <Route element={<RequireAuth />}>
           <Route element={<Layout />}>
             <Route path="/" element={<Main />} />
-            <Route
-              path="register"
-              element={
-                <TicketFormProvider>
-                  <TicketRegister />
-                </TicketFormProvider>
-              }
-            />
+            <Route path="register">
+              <Route index element={<StadiumPicker />} />
+              <Route
+                path=":team"
+                element={
+                  <TicketFormProvider>
+                    <TicketRegister />
+                  </TicketFormProvider>
+                }
+              />
+            </Route>
           </Route>
         </Route>
         <Route path="login" element={<Login onSuccess={loginUser} />} />
