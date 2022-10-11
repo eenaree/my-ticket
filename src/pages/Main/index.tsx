@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Button from '@components/common/Button';
 import Modal from '@components/common/Modal';
 import MyTeamList from '@components/MyTeamList';
@@ -29,6 +30,9 @@ export default function Main() {
         </header>
         <MyTeamList />
       </section>
+      <Link to="register" css={styles.registerLink}>
+        티켓 등록
+      </Link>
     </>
   );
 }

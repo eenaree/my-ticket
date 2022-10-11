@@ -1,13 +1,7 @@
 import { css } from '@emotion/react';
-import { mq } from '@styles/mediaQueries';
+import { colors } from '@styles/theme';
 
 export const styles = {
-  inner: css({
-    [mq('lg')]: {
-      width: 1200,
-      margin: '0 auto',
-    },
-  }),
   title: css({
     padding: 20,
     display: 'flex',
@@ -17,5 +11,18 @@ export const styles = {
       fontSize: '1.6rem',
       fontWeight: 600,
     },
+  }),
+  registerLink: css({
+    position: 'fixed',
+    bottom: 0,
+    left: 0,
+    width: '100%',
+    height: 60,
+    lineHeight: '60px',
+    textAlign: 'center',
+    background: colors.indigo[300],
+    color: colors.white,
+    fontSize: '1.25rem',
+    fontWeight: 600,
   }),
 };

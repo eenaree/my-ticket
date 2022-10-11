@@ -9,9 +9,6 @@ export default function NavBar() {
     <nav>
       <ul css={styles.navList}>
         <li>
-          <Button>티켓 등록</Button>
-        </li>
-        <li>
           <Button onClick={logoutUser}>로그아웃</Button>
         </li>
       </ul>
