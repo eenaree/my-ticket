@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
-import { KBO_LEAGUE_STADIUMS, KBOTeams } from '@constants/global';
-import { useModalStore } from '@store/useModalStore';
+import {
+  KBO_LEAGUE_STADIUMS,
+  KBO_LEAGUE_TEAMS_FULLNAME,
+  KBOTeams,
+} from '@constants/global';
 import { styles } from './styles';
 
 function getAwayTeams(teamId: string) {
@@ -8,33 +11,35 @@ function getAwayTeams(teamId: string) {
 }
 
 export default function StadiumList() {
-  const closeModal = useModalStore(state => state.closeModal);
-
   return (
-    <ul css={styles.stadiumSelect}>
-      {KBOTeams.map(team => (
-        <li key={team[0]}>
-          <span
+    <ul css={styles.stadiumList}>
+      {KBOTeams.map(team => {
+        const teamId = team[0];
+        const teamFullName = KBO_LEAGUE_TEAMS_FULLNAME[team[0]];
+        const homeStadium = KBO_LEAGUE_STADIUMS[team[0]];
+
+        return (
+          <li
+            key={teamId}
             style={{
-              '--team-logo': `url('/images/team/${team[0]}.png')`,
+              '--team-logo': `url('/images/team/${teamId}.png')`,
             }}
           >
-            <em>{team[1]}</em>
-            <em>{KBO_LEAGUE_STADIUMS[team[0]]}</em>
+            <em>{teamFullName}</em>
+            <em>{homeStadium}</em>
             <Link
-              to="/register"
+              to={teamId}
               state={{
                 homeTeam: [...team],
-                awayTeams: getAwayTeams(team[0]),
-                stadium: KBO_LEAGUE_STADIUMS[team[0]],
+                awayTeams: getAwayTeams(teamId),
+                stadium: homeStadium,
               }}
-              onClick={closeModal}
             >
               티켓 등록
             </Link>
-          </span>
-        </li>
-      ))}
+          </li>
+        );
+      })}
     </ul>
   );
 }

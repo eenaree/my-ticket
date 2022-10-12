@@ -17,6 +17,19 @@ export const KBO_LEAGUE_TEAMS = {
 
 export const KBOTeams = Object.entries(KBO_LEAGUE_TEAMS) as Teams;
 
+export const KBO_LEAGUE_TEAMS_FULLNAME = {
+  KT: 'KT 위즈',
+  OB: '두산 베어스',
+  SS: '삼성 라이온즈',
+  LG: 'LG 트윈스',
+  WO: '키움 히어로즈',
+  SK: 'SSG 랜더스',
+  LT: '롯데 자이언츠',
+  NC: 'NC 다이노스',
+  HT: 'KIA 타이거즈',
+  HH: '한화 이글스',
+} as const;
+
 export const KBO_LEAGUE_STADIUMS = {
   KT: '수원 KT 위즈 파크',
   OB: '서울 잠실야구장(두산)',
