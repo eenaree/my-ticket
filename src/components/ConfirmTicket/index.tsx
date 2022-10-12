@@ -42,7 +42,7 @@ export default function ConfirmTicket() {
           </p>
           <p
             css={styles.matchup}
-            style={{ '--home-logo': `url('images/team/${homeTeam}.png')` }}
+            style={{ '--home-logo': `url('/images/team/${homeTeam}.png')` }}
           >
             {matchup}
           </p>
