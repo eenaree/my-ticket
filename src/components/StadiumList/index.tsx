@@ -6,10 +6,6 @@ import {
 } from '@constants/global';
 import { styles } from './styles';
 
-function getAwayTeams(teamId: string) {
-  return KBOTeams.filter(team => team[0] !== teamId);
-}
-
 export default function StadiumList() {
   return (
     <ul css={styles.stadiumList}>
@@ -27,16 +23,7 @@ export default function StadiumList() {
           >
             <em>{teamFullName}</em>
             <em>{homeStadium}</em>
-            <Link
-              to={teamId}
-              state={{
-                homeTeam: [...team],
-                awayTeams: getAwayTeams(teamId),
-                stadium: homeStadium,
-              }}
-            >
-              티켓 등록
-            </Link>
+            <Link to={teamId}>티켓 등록</Link>
           </li>
         );
       })}

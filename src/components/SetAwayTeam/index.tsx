@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import RadioButton from '@components/common/RadioButton';
-import { KBO_LEAGUE_TEAMS } from '@constants/global';
+import { KBO_LEAGUE_TEAMS, KBOTeams } from '@constants/global';
 import {
-  type TicketFormLocationState,
   useTicketForm,
   useTicketFormDispatch,
 } from '@context/TicketFormContext';
@@ -17,22 +16,24 @@ interface AwayTeamListProps {
 }
 
 export default function SetAwayTeam() {
-  const location = useLocation();
-  const ticketFormState = location.state as TicketFormLocationState;
+  const params = useParams<'teamId'>();
+  const awayTeamsExcludingHomeTeam = KBOTeams.filter(
+    ([teamId]) => teamId !== params.teamId
+  );
 
   const ticketFormDispatch = useTicketFormDispatch();
   const { homeTeam, awayTeam } = useTicketForm();
   const [awayTeams, setAwayTeams] = useState(() => {
-    if (awayTeam)
-      return ticketFormState.awayTeams.filter(team => team[0] != awayTeam);
-    return ticketFormState.awayTeams;
+    return awayTeam
+      ? awayTeamsExcludingHomeTeam.filter(([teamId]) => teamId != awayTeam)
+      : awayTeamsExcludingHomeTeam;
   });
 
   function onChangeAwayTeam(
     e: React.ChangeEvent<HTMLInputElement & { value: TeamId }>
   ) {
-    const changedAwayTeams = ticketFormState.awayTeams.filter(
-      awayTeam => awayTeam[0] != e.target.value
+    const changedAwayTeams = awayTeamsExcludingHomeTeam.filter(
+      ([teamId]) => teamId != e.target.value
     );
     setAwayTeams(changedAwayTeams);
     ticketFormDispatch({

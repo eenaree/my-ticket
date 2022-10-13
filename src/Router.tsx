@@ -21,7 +21,7 @@ export default function Router() {
             <Route path="register">
               <Route index element={<StadiumPicker />} />
               <Route
-                path=":team"
+                path=":teamId"
                 element={
                   <TicketFormProvider>
                     <TicketRegister />
