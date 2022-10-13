@@ -4,9 +4,9 @@ import Authenticated from '@pages/Authenticated';
 import Layout from '@pages/Layout';
 import Login from '@pages/Login';
 import Main from '@pages/Main';
+import StadiumPicker from '@pages/Register/StadiumPicker';
+import TicketForm from '@pages/Register/TicketForm';
 import RequireAuth from '@pages/RequireAuth';
-import StadiumPicker from '@pages/StadiumPicker';
-import TicketRegister from '@pages/TicketRegister';
 import { useUserStore } from './store';
 
 export default function Router() {
@@ -24,7 +24,7 @@ export default function Router() {
                 path=":teamId"
                 element={
                   <TicketFormProvider>
-                    <TicketRegister />
+                    <TicketForm />
                   </TicketFormProvider>
                 }
               />
