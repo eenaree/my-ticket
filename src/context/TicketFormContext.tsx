@@ -1,4 +1,5 @@
 import { createContext, useContext, useReducer } from 'react';
+import { Navigate, useParams } from 'react-router-dom';
 import { KBO_LEAGUE_STADIUMS, KBOTeams } from '@constants/global';
 import { TeamId } from '@typings/db';
 
@@ -147,6 +148,10 @@ export function TicketFormProvider({
     },
     scoreType: '무',
   });
+
+  if (!isTeamId(params.teamId)) {
+    return <Navigate to="/register" replace />;
+  }
 
   return (
     <TicketFormDispatchContext.Provider value={dispatch}>
