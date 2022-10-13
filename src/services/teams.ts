@@ -12,5 +12,5 @@ export async function fetchMyTeams() {
 }
 
 export function updateMyTeams(teamIds: TeamId[]) {
-  return httpClient.post('/teams/update', { teams: teamIds });
+  return httpClient.post('/teams', { teams: teamIds });
 }
