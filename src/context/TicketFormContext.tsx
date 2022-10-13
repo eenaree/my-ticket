@@ -1,12 +1,6 @@
 import { createContext, useContext, useReducer } from 'react';
-import { useLocation } from 'react-router-dom';
-import { TeamId, Teams } from '@typings/db';
-
-export interface TicketFormLocationState {
-  homeTeam: Teams[number];
-  awayTeams: Teams;
-  stadium: string;
-}
+import { KBO_LEAGUE_STADIUMS, KBOTeams } from '@constants/global';
+import { TeamId } from '@typings/db';
 
 interface TicketFormContext {
   matchDate: {
@@ -125,19 +119,26 @@ const ticketFormReducer: React.Reducer<TicketFormContext, TicketFormActions> = (
   }
 };
 
+function isTeamId(id: string | undefined): id is TeamId {
+  return KBOTeams.some(([teamId]) => teamId == id);
+}
+
 export function TicketFormProvider({
   children,
 }: React.PropsWithChildren<unknown>) {
-  const location = useLocation();
-  const ticketFormState = location.state as TicketFormLocationState;
+  const params = useParams<'teamId'>();
+  const homeTeam = {
+    teamId: isTeamId(params.teamId) ? params.teamId : undefined,
+    stadium: isTeamId(params.teamId) ? KBO_LEAGUE_STADIUMS[params.teamId] : '',
+  };
 
   const [state, dispatch] = useReducer(ticketFormReducer, {
     matchDate: { year: 0, month: 0, date: 0 },
     matchSeason: '',
     matchSeries: '',
-    homeTeam: ticketFormState.homeTeam[0],
+    homeTeam: homeTeam.teamId,
     awayTeam: undefined,
-    stadium: ticketFormState.stadium,
+    stadium: homeTeam.stadium,
     myTeam: undefined,
     opponentTeam: undefined,
     score: {
