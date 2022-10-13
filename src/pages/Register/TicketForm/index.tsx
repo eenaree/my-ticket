@@ -29,7 +29,7 @@ function renderTicketRegisterForm(step: number) {
 
 const stepTitles = ['시즌', '경기 날짜', '매치업', '응원팀', '스코어', '등록'];
 
-export default function TicketRegister() {
+export default function TicketForm() {
   const [formStep, setFormStep] = useState(1);
   const lastStep = stepTitles.length;
   const ticketForm = useTicketForm();
