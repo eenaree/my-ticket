@@ -9,7 +9,7 @@ import { styles } from './styles';
 export default function TeamPicker() {
   const closeModal = useModalStore(state => state.closeModal);
   const myTeams = useTeamStore(state => state.myTeams);
-  const changeMyTeams = useTeamStore(state => state.changeMyTeams);
+  const setMyTeams = useTeamStore(state => state.setMyTeams);
   const [pickedTeams, setPickedTeams] = useState(myTeams);
 
   function onChangeTeam(
@@ -33,7 +33,7 @@ export default function TeamPicker() {
         pickedTeams.some(pickedTeam => myTeams.includes(pickedTeam)));
 
     if (isChanged) {
-      changeMyTeams(pickedTeams);
+      setMyTeams(pickedTeams);
     } else {
       closeModal();
     }

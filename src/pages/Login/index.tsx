@@ -43,7 +43,7 @@ const providers = [
 export default function Login() {
   const navigate = useNavigate();
   const user = useUserStore(state => state.user);
-  const loginUser = useUserStore(state => state.loginUser);
+  const login = useUserStore(state => state.login);
   const newWindowRef = useRef<Window | null>();
   const prevWindowUrlRef = useRef('');
 
@@ -57,7 +57,7 @@ export default function Login() {
       if (e.source == newWindowRef.current) {
         if (e.data.from == 'authentication') {
           if (e.data.user) {
-            loginUser(e.data.user);
+            login(e.data.user);
           } else {
             window.alert('로그인에 실패했습니다.');
           }
@@ -65,7 +65,7 @@ export default function Login() {
         }
       }
     },
-    [loginUser]
+    [login]
   );
 
   function onClickLogin(provider: Provider) {
