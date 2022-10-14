@@ -3,7 +3,7 @@ import { Navigate, useParams } from 'react-router-dom';
 import { KBO_LEAGUE_STADIUMS, KBOTeams } from '@constants/global';
 import { TeamId } from '@typings/db';
 
-interface TicketFormContext {
+export interface TicketFormContext {
   matchDate: {
     year: number;
     month: number;
