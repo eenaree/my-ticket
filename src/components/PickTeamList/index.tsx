@@ -1,9 +1,8 @@
-import { KBO_LEAGUE_TEAMS } from '@constants/global';
-import { TeamId } from '@typings/db';
+import { Teams } from '@typings/db';
 import { styles } from './styles';
 
 interface Props {
-  teams: TeamId[];
+  teams: Teams;
 }
 
 export default function PickTeamList({ teams }: Props) {
@@ -13,15 +12,12 @@ export default function PickTeamList({ teams }: Props) {
 
   return (
     <ul css={styles.teamList}>
-      {teams.map((teamId, index) => (
-        <li key={teamId}>
+      {teams.map((team, index) => (
+        <li key={team[0]}>
           <button>
             <em>{index + 1}</em>
-            <img
-              src={`/images/team/${teamId}.png`}
-              alt={KBO_LEAGUE_TEAMS[teamId]}
-            />
-            <span>{KBO_LEAGUE_TEAMS[teamId]}</span>
+            <img src={`/images/team/${team[0]}.png`} alt={team[1]} />
+            <span>{team[1]}</span>
           </button>
         </li>
       ))}

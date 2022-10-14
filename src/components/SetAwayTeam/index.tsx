@@ -6,11 +6,11 @@ import {
   useTicketForm,
   useTicketFormDispatch,
 } from '@context/TicketFormContext';
-import { TeamId } from '@typings/db';
+import { TeamId, Teams } from '@typings/db';
 import { styles } from './styles';
 
 interface AwayTeamListProps {
-  list: TeamId[];
+  list: Teams;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   checkedValue?: string;
 }
@@ -18,14 +18,14 @@ interface AwayTeamListProps {
 export default function SetAwayTeam() {
   const params = useParams<'teamId'>();
   const awayTeamsExcludingHomeTeam = KBOTeams.filter(
-    teamId => teamId !== params.teamId
+    ([teamId]) => teamId !== params.teamId
   );
 
   const ticketFormDispatch = useTicketFormDispatch();
   const { homeTeam, awayTeam } = useTicketForm();
   const [awayTeams, setAwayTeams] = useState(() => {
     return awayTeam
-      ? awayTeamsExcludingHomeTeam.filter(teamId => teamId != awayTeam)
+      ? awayTeamsExcludingHomeTeam.filter(([teamId]) => teamId != awayTeam)
       : awayTeamsExcludingHomeTeam;
   });
 
@@ -33,7 +33,7 @@ export default function SetAwayTeam() {
     e: React.ChangeEvent<HTMLInputElement & { value: TeamId }>
   ) {
     const changedAwayTeams = awayTeamsExcludingHomeTeam.filter(
-      teamId => teamId != e.target.value
+      ([teamId]) => teamId != e.target.value
     );
     setAwayTeams(changedAwayTeams);
     ticketFormDispatch({
@@ -51,9 +51,9 @@ export default function SetAwayTeam() {
             <>
               <img
                 src={`/images/team/${awayTeam}.png`}
-                alt={KBO_LEAGUE_TEAMS[awayTeam]}
+                alt={awayTeam && KBO_LEAGUE_TEAMS[awayTeam]}
               />
-              <em>{KBO_LEAGUE_TEAMS[awayTeam]}</em>
+              <em>{awayTeam && KBO_LEAGUE_TEAMS[awayTeam]}</em>
             </>
           ) : (
             <span>없음</span>
@@ -80,14 +80,14 @@ export default function SetAwayTeam() {
 function AwayTeamList({ list, onChange, checkedValue }: AwayTeamListProps) {
   return (
     <div css={styles.awayTeamList}>
-      {list.map(teamId => (
+      {list.map(team => (
         <RadioButton
-          key={teamId}
-          id={teamId}
-          value={teamId}
-          checked={checkedValue == teamId}
+          key={team[0]}
+          id={team[0]}
+          value={team[0]}
+          checked={checkedValue == team[0]}
           onChange={onChange}
-          label={KBO_LEAGUE_TEAMS[teamId]}
+          label={team[1]}
         />
       ))}
     </div>

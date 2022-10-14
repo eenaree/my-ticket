@@ -1,4 +1,4 @@
-import { TeamId } from '@typings/db';
+import { Teams } from '@typings/db';
 
 export const BASE_URL = 'http://localhost:8080/api';
 
@@ -15,7 +15,7 @@ export const KBO_LEAGUE_TEAMS = {
   HH: '한화',
 } as const;
 
-export const KBOTeams = Object.keys(KBO_LEAGUE_TEAMS) as TeamId[];
+export const KBOTeams = Object.entries(KBO_LEAGUE_TEAMS) as Teams;
 
 export const KBO_LEAGUE_TEAMS_FULLNAME = {
   KT: 'KT 위즈',
