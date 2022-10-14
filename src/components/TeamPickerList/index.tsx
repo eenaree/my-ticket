@@ -1,31 +1,27 @@
 import Checkbox from '@components/common/Checkbox';
-import { KBOTeams } from '@constants/global';
-import { TeamId, Teams } from '@typings/db';
+import { KBO_LEAGUE_TEAMS, KBOTeams } from '@constants/global';
+import { TeamId } from '@typings/db';
 import { styles } from './styles';
 
 interface Props {
-  teams: Teams;
+  teams: TeamId[];
   onChangeTeam: React.ChangeEventHandler<HTMLInputElement>;
-}
-
-function getTeamIsChecked(teams: Teams, teamId: TeamId) {
-  return teams.findIndex(team => team[0] == teamId) !== -1;
 }
 
 export default function TeamPickerList({ teams, onChangeTeam }: Props) {
   return (
     <ul css={styles.teamList}>
-      {KBOTeams.map(team => (
-        <li key={team[0]}>
-          <span style={{ '--team-logo': `url('/images/team/${team[0]}.png')` }}>
+      {KBOTeams.map(teamId => (
+        <li key={teamId}>
+          <span style={{ '--team-logo': `url('/images/team/${teamId}.png')` }}>
             <Checkbox
-              id={team[0]}
+              id={teamId}
               name="team"
-              value={team[0]}
-              checked={getTeamIsChecked(teams, team[0])}
+              value={teamId}
+              checked={teams.includes(teamId)}
               onChange={onChangeTeam}
-              label={team[1]}
-              data-value={team[1]}
+              label={KBO_LEAGUE_TEAMS[teamId]}
+              data-value={KBO_LEAGUE_TEAMS[teamId]}
             />
           </span>
         </li>

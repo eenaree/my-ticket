@@ -121,7 +121,7 @@ const ticketFormReducer: React.Reducer<TicketFormContext, TicketFormActions> = (
 };
 
 function isTeamId(id: string | undefined): id is TeamId {
-  return KBOTeams.some(([teamId]) => teamId == id);
+  return KBOTeams.some(teamId => teamId == id);
 }
 
 export function TicketFormProvider({
