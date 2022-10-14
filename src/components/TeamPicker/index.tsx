@@ -31,7 +31,7 @@ export default function TeamPicker() {
     const isChanged =
       myTeams.length !== pickedTeams.length ||
       (pickedTeams.length > 0 &&
-        pickedTeams.some(pickedTeam => myTeams.includes(pickedTeam)));
+        pickedTeams.some(pickedTeam => !myTeams.includes(pickedTeam)));
 
     if (isChanged) {
       await setMyTeams(pickedTeams);
