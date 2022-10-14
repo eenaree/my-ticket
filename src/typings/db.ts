@@ -9,4 +9,3 @@ export interface User {
 
 export type TeamId = keyof typeof KBO_LEAGUE_TEAMS;
 export type TeamName = typeof KBO_LEAGUE_TEAMS[TeamId];
-export type Teams = Array<[TeamId, TeamName]>;

@@ -18,13 +18,10 @@ export default function TeamPicker() {
     >
   ) {
     if (e.target.checked) {
-      setPickedTeams(prev => [
-        ...prev,
-        [e.target.value, e.target.dataset.value],
-      ]);
+      setPickedTeams(prev => [...prev, e.target.value]);
     } else {
       setPickedTeams(prev =>
-        prev.filter(exTeam => exTeam[0] != e.target.value)
+        prev.filter(exTeamId => exTeamId != e.target.value)
       );
     }
   }
@@ -33,9 +30,7 @@ export default function TeamPicker() {
     const isChanged =
       myTeams.length !== pickedTeams.length ||
       (pickedTeams.length > 0 &&
-        pickedTeams.some(pickedTeam => {
-          return myTeams.findIndex(exTeam => exTeam == pickedTeam) == -1;
-        }));
+        pickedTeams.some(pickedTeam => myTeams.includes(pickedTeam)));
 
     if (isChanged) {
       changeMyTeams(pickedTeams);
