@@ -7,11 +7,8 @@ import Main from '@pages/Main';
 import StadiumPicker from '@pages/Register/StadiumPicker';
 import TicketForm from '@pages/Register/TicketForm';
 import RequireAuth from '@pages/RequireAuth';
-import { useUserStore } from './store';
 
 export default function Router() {
-  const loginUser = useUserStore(state => state.loginUser);
-
   return (
     <BrowserRouter>
       <Routes>
@@ -31,7 +28,7 @@ export default function Router() {
             </Route>
           </Route>
         </Route>
-        <Route path="login" element={<Login onSuccess={loginUser} />} />
+        <Route path="login" element={<Login />} />
         <Route path="authenticated" element={<Authenticated />} />
       </Routes>
     </BrowserRouter>
