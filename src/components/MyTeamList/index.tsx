@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { KBO_LEAGUE_TEAMS } from '@constants/global';
 import { useTeamStore } from '@store/.';
 import { styles } from './styles';
 
@@ -16,10 +17,13 @@ export default function MyTeamList() {
   return (
     <div>
       <ul css={styles.teamList}>
-        {myTeams.map(myTeam => (
-          <li key={myTeam[0]} css={styles.team}>
+        {myTeams.map(teamId => (
+          <li key={teamId} css={styles.team}>
             <button>
-              <img src={`/images/team/${myTeam[0]}.png`} alt={myTeam[1]} />
+              <img
+                src={`/images/team/${teamId}.png`}
+                alt={KBO_LEAGUE_TEAMS[teamId]}
+              />
             </button>
           </li>
         ))}
