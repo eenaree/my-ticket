@@ -8,10 +8,6 @@ import { useUserStore } from '@store/.';
 import { User } from '@typings/db';
 import { styles } from './styles';
 
-interface Props {
-  onSuccess(user: User): void;
-}
-
 interface ProviderProps {
   provider: Provider;
   Icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
@@ -44,9 +40,10 @@ const providers = [
   },
 ] as const;
 
-export default function Login({ onSuccess }: Props) {
+export default function Login() {
   const navigate = useNavigate();
   const user = useUserStore(state => state.user);
+  const loginUser = useUserStore(state => state.loginUser);
   const newWindowRef = useRef<Window | null>();
   const prevWindowUrlRef = useRef('');
 
@@ -60,7 +57,7 @@ export default function Login({ onSuccess }: Props) {
       if (e.source == newWindowRef.current) {
         if (e.data.from == 'authentication') {
           if (e.data.user) {
-            onSuccess(e.data.user);
+            loginUser(e.data.user);
           } else {
             window.alert('로그인에 실패했습니다.');
           }
@@ -68,7 +65,7 @@ export default function Login({ onSuccess }: Props) {
         }
       }
     },
-    [onSuccess]
+    [loginUser]
   );
 
   function onClickLogin(provider: Provider) {
