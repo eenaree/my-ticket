@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '@components/common/Button';
 import ConfirmTicket from '@components/ConfirmTicket';
 import ProgressIndicator from '@components/ProgressIndicator';
@@ -8,6 +9,8 @@ import SetMatchScore from '@components/SetMatchScore';
 import SetMatchSeason from '@components/SetMatchSeason';
 import SetMyTeam from '@components/SetMyTeam';
 import { useTicketForm } from '@context/TicketFormContext';
+import { createTicket } from '@services/tickets';
+import { useSnackBarStore } from '@store/useSnackBarStore';
 import { styles } from './styles';
 
 function renderTicketRegisterForm(step: number) {
@@ -33,6 +36,8 @@ export default function TicketForm() {
   const [formStep, setFormStep] = useState(1);
   const lastStep = stepTitles.length;
   const ticketForm = useTicketForm();
+  const openSnackBar = useSnackBarStore(state => state.openSnackBar);
+  const navigate = useNavigate();
 
   function prevStep() {
     setFormStep(prev => prev - 1);
@@ -71,9 +76,20 @@ export default function TicketForm() {
     return true;
   }
 
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const ticket = {
+      ...ticketForm,
+      matchDate: `${ticketForm.matchDate.year}.${ticketForm.matchDate.month}.${ticketForm.matchDate.date}`,
+    };
+    await createTicket(ticket);
+    openSnackBar('새로운 티켓이 등록되었습니다.');
+    navigate('/');
+  }
+
   return (
     <section>
-      <form css={styles.form}>
+      <form css={styles.form} onSubmit={onSubmit}>
         <h2>티켓 등록</h2>
         <ProgressIndicator step={formStep} stepTitles={stepTitles} />
         {renderTicketRegisterForm(formStep)}
