@@ -1,7 +1,6 @@
 import create from 'zustand';
 import * as TeamService from '@services/teams';
 import { TeamId } from '@typings/db';
-import { useModalStore } from './useModalStore';
 
 interface TeamState {
   myTeams: TeamId[];
@@ -15,7 +14,6 @@ export const useTeamStore = create<TeamState>()(set => ({
     try {
       await TeamService.updateMyTeams(teams);
       set({ myTeams: teams });
-      useModalStore.setState({ modal: '' });
     } catch (error) {
       console.error(error);
     }

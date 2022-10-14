@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Button from '@components/common/Button';
 import PickTeamList from '@components/PickTeamList';
 import TeamPickerList from '@components/TeamPickerList';
-import { useModalStore, useTeamStore } from '@store/.';
+import { useModalStore, useSnackBarStore, useTeamStore } from '@store/.';
 import { TeamId, TeamName } from '@typings/db';
 import { styles } from './styles';
 
@@ -11,6 +11,7 @@ export default function TeamPicker() {
   const myTeams = useTeamStore(state => state.myTeams);
   const setMyTeams = useTeamStore(state => state.setMyTeams);
   const [pickedTeams, setPickedTeams] = useState(myTeams);
+  const openSnackBar = useSnackBarStore(state => state.openSnackBar);
 
   function onChangeTeam(
     e: React.ChangeEvent<
@@ -26,17 +27,18 @@ export default function TeamPicker() {
     }
   }
 
-  function savePickedTeams() {
+  async function savePickedTeams() {
     const isChanged =
       myTeams.length !== pickedTeams.length ||
       (pickedTeams.length > 0 &&
-        pickedTeams.some(pickedTeam => myTeams.includes(pickedTeam)));
+        pickedTeams.some(pickedTeam => !myTeams.includes(pickedTeam)));
 
     if (isChanged) {
-      setMyTeams(pickedTeams);
-    } else {
-      closeModal();
+      await setMyTeams(pickedTeams);
+      openSnackBar('MY팀이 변경되었습니다.');
     }
+
+    closeModal();
   }
 
   return (
