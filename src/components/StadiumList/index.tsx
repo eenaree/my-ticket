@@ -9,9 +9,10 @@ import { styles } from './styles';
 export default function StadiumList() {
   return (
     <ul css={styles.stadiumList}>
-      {KBOTeams.map(teamId => {
-        const teamFullName = KBO_LEAGUE_TEAMS_FULLNAME[teamId];
-        const homeStadium = KBO_LEAGUE_STADIUMS[teamId];
+      {KBOTeams.map(team => {
+        const teamId = team[0];
+        const teamFullName = KBO_LEAGUE_TEAMS_FULLNAME[team[0]];
+        const homeStadium = KBO_LEAGUE_STADIUMS[team[0]];
 
         return (
           <li
