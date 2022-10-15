@@ -1,17 +1,11 @@
-import Button from '@components/common/Button';
-import { useUserStore } from '@store/useUserStore';
+import CustomLink from '@components/CustomLink';
 import { styles } from './styles';
 
 export default function NavBar() {
-  const logout = useUserStore(state => state.logout);
-
   return (
-    <nav>
-      <ul css={styles.navList}>
-        <li>
-          <Button onClick={logout}>로그아웃</Button>
-        </li>
-      </ul>
+    <nav css={styles.navList}>
+      <CustomLink to="/">직관 히스토리</CustomLink>
+      <CustomLink to="myteam">MY 팀</CustomLink>
     </nav>
   );
 }
