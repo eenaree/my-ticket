@@ -78,11 +78,7 @@ export default function TicketForm() {
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const ticket = {
-      ...ticketForm,
-      matchDate: `${ticketForm.matchDate.year}.${ticketForm.matchDate.month}.${ticketForm.matchDate.date}`,
-    };
-    await createTicket(ticket);
+    await createTicket(ticketForm);
     openSnackBar('새로운 티켓이 등록되었습니다.');
     navigate('/');
   }
