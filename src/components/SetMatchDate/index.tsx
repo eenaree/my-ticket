@@ -27,7 +27,7 @@ function getMatchCalendar() {
 
 function getDates(year: number, month: number) {
   const dates: number[] = [];
-  const lastDayOfMonth = new Date(year, month + 1, 0).getDate();
+  const lastDayOfMonth = new Date(year, month, 0).getDate();
 
   for (let i = 1; i <= lastDayOfMonth; i++) {
     dates.push(i);
@@ -48,14 +48,14 @@ export default function SetMatchDate() {
 
   function onChangeYear(year: number) {
     if (matchDate.month != 0) {
-      const newDates = getDates(year, matchDate.month - 1);
+      const newDates = getDates(year, matchDate.month);
       setDates(newDates);
     }
     ticketFormDispatch({ type: 'SET_MATCH_YEAR', year });
   }
 
   function onChangeMonth(month: number) {
-    const newDates = getDates(matchDate.year, month - 1);
+    const newDates = getDates(matchDate.year, month);
     const hasFewerDates = newDates.length < matchDate.date;
     setDates(newDates);
     ticketFormDispatch({
