@@ -68,8 +68,7 @@ export default function TicketForm() {
       return false;
     }
     if (formStep == 4) {
-      const { myTeam, opponentTeam } = ticketForm;
-      if (myTeam && opponentTeam) return true;
+      if (ticketForm.myTeam) return true;
       return false;
     }
 

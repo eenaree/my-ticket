@@ -15,7 +15,6 @@ export interface TicketFormContext {
   awayTeam: TeamId | undefined;
   stadium: string;
   myTeam: TeamId | undefined;
-  opponentTeam: TeamId | undefined;
   score: {
     homeTeam: number;
     awayTeam: number;
@@ -90,14 +89,11 @@ const ticketFormReducer: React.Reducer<TicketFormContext, TicketFormActions> = (
         ...state,
         awayTeam: action.awayTeam,
         myTeam: undefined,
-        opponentTeam: undefined,
       };
     case 'SET_MYTEAM':
       return {
         ...state,
         myTeam: action.team,
-        opponentTeam:
-          action.team == state.homeTeam ? state.awayTeam : state.homeTeam,
       };
     case 'SET_AWAYTEAM_SCORE':
       return {
@@ -141,7 +137,6 @@ export function TicketFormProvider({
     awayTeam: undefined,
     stadium: homeTeam.stadium,
     myTeam: undefined,
-    opponentTeam: undefined,
     score: {
       homeTeam: 0,
       awayTeam: 0,
