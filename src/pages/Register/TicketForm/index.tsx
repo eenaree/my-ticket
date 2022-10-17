@@ -49,12 +49,13 @@ export default function TicketForm() {
 
   function validateForm() {
     if (formStep == 1) {
-      const { matchSeason, matchSeries } = ticketForm;
+      const { seasons } = ticketForm;
       if (
-        matchSeason == '정규시즌' ||
-        (matchSeason == '포스트시즌' && matchSeries)
-      )
+        seasons[0] == '정규시즌' ||
+        (seasons[0] == '포스트시즌' && seasons[1])
+      ) {
         return true;
+      }
       return false;
     }
     if (formStep == 2) {

@@ -9,8 +9,7 @@ export interface TicketFormContext {
     month: number;
     date: number;
   };
-  matchSeason: string;
-  matchSeries: string;
+  seasons: string[];
   homeTeam: TeamId | undefined;
   awayTeam: TeamId | undefined;
   stadium: string;
@@ -76,13 +75,12 @@ const ticketFormReducer: React.Reducer<TicketFormContext, TicketFormActions> = (
     case 'SET_MATCH_SEASON':
       return {
         ...state,
-        matchSeason: action.season,
-        matchSeries: '',
+        seasons: [action.season],
       };
     case 'SET_MATCH_SERIES':
       return {
         ...state,
-        matchSeries: action.series,
+        seasons: [state.seasons[0], action.series],
       };
     case 'SET_AWAY_TEAM':
       return {
@@ -131,8 +129,7 @@ export function TicketFormProvider({
 
   const [state, dispatch] = useReducer(ticketFormReducer, {
     matchDate: { year: 0, month: 0, date: 0 },
-    matchSeason: '',
-    matchSeries: '',
+    seasons: [],
     homeTeam: homeTeam.teamId,
     awayTeam: undefined,
     stadium: homeTeam.stadium,
@@ -143,6 +140,7 @@ export function TicketFormProvider({
     },
     scoreType: '무',
   });
+  console.log(state.seasons);
 
   if (!isTeamId(params.teamId)) {
     return <Navigate to="/register" replace />;
