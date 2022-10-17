@@ -42,3 +42,5 @@ export const KBO_LEAGUE_STADIUMS = {
   HT: '광주 기아 챔피언스 필드',
   HH: '대전 한화생명 이글스파크',
 } as const;
+
+export const Days = ['일', '월', '화', '수', '목', '금', '토'];

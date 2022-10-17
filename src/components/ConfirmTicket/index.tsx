@@ -1,9 +1,7 @@
-import { KBO_LEAGUE_TEAMS } from '@constants/global';
+import { Days, KBO_LEAGUE_TEAMS } from '@constants/global';
 import { useTicketForm } from '@context/TicketFormContext';
 import { colors } from '@styles/theme';
 import { styles } from './styles';
-
-const weekdays = ['일', '월', '화', '수', '목', '금', '토'];
 
 const scoreTypes = {
   승: colors.indigo[800],
@@ -21,7 +19,7 @@ export default function ConfirmTicket() {
     scoreType,
   } = useTicketForm();
   const matchDate = `${year}.${month}.${date}`;
-  const matchDay = weekdays[new Date(year, month - 1, date).getDay()];
+  const matchDay = Days[new Date(year, month - 1, date).getDay()];
   const matchup = `${awayTeam && KBO_LEAGUE_TEAMS[awayTeam]} vs ${
     homeTeam && KBO_LEAGUE_TEAMS[homeTeam]
   }`;
