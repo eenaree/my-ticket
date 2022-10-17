@@ -13,7 +13,7 @@ const KBO_POSTSEASON_SERIES = [
 ];
 
 export default function SetMatchSeries() {
-  const { matchSeries } = useTicketForm();
+  const { seasons } = useTicketForm();
   const ticketFormDispatch = useTicketFormDispatch();
 
   function onChangeMatchSeries(e: React.ChangeEvent<HTMLInputElement>) {
@@ -30,7 +30,7 @@ export default function SetMatchSeries() {
             id={series}
             value={series}
             name="series"
-            checked={matchSeries == series}
+            checked={seasons[1] == series}
             onChange={onChangeMatchSeries}
             label={series}
           />

@@ -9,7 +9,7 @@ import { styles } from './styles';
 const KBO_LEAGUE_SEASONS = ['정규시즌', '포스트시즌'];
 
 export default function SetMatchSeason() {
-  const { matchSeason } = useTicketForm();
+  const { seasons } = useTicketForm();
   const ticketFormDispatch = useTicketFormDispatch();
 
   function onChangeMatchSeason(e: React.ChangeEvent<HTMLInputElement>) {
@@ -26,13 +26,13 @@ export default function SetMatchSeason() {
             id={season}
             value={season}
             name="season"
-            checked={season == matchSeason}
+            checked={season == seasons[0]}
             onChange={onChangeMatchSeason}
             label={season}
           />
         ))}
       </div>
-      {matchSeason == '포스트시즌' && <SetMatchSeries />}
+      {seasons[0] == '포스트시즌' && <SetMatchSeries />}
     </div>
   );
 }
