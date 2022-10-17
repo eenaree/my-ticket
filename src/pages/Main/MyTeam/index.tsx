@@ -11,7 +11,7 @@ export default function MyTeam() {
 
   return (
     <>
-      <section>
+      <section css={styles.wrapper}>
         <header css={styles.title}>
           <h2>MY 팀</h2>
           <Button onClick={() => openModal('team-picker')} variant="primary">

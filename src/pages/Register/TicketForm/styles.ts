@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import { mq } from '@styles/mediaQueries';
 
 export const styles = {
   form: css({
@@ -13,6 +14,10 @@ export const styles = {
       fontSize: '1.4rem',
       fontWeight: 600,
       textAlign: 'center',
+    },
+    [mq('lg')]: {
+      width: 1200,
+      margin: '0 auto',
     },
   }),
   formNavigation: css({

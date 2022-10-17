@@ -28,5 +28,9 @@ export const styles = {
         fontSize: '1.6rem',
       },
     },
+    [mq('lg')]: {
+      width: 1200,
+      margin: '0 auto',
+    },
   }),
 };
