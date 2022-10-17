@@ -140,7 +140,6 @@ export function TicketFormProvider({
     },
     scoreType: '무',
   });
-  console.log(state.seasons);
 
   if (!isTeamId(params.teamId)) {
     return <Navigate to="/register" replace />;
