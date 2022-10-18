@@ -3,6 +3,16 @@ import { mq } from '@styles/mediaQueries';
 import { colors } from '@styles/theme';
 
 export const styles = {
+  wrapper: css({
+    minHeight: 'calc(100vh - 110px)',
+    background: colors.gray[50],
+    [mq('sm')]: {
+      minHeight: 'calc(100vh - 135px)',
+    },
+    [mq('lg')]: {
+      minHeight: 'calc(100vh - 145px)',
+    },
+  }),
   registerLink: css({
     position: 'fixed',
     bottom: '1rem',
