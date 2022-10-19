@@ -27,7 +27,7 @@ export const styles = {
       display: 'flex',
       flexDirection: 'column',
     },
-    [mq('sm')]: {
+    [mq('xs')]: {
       padding: 0,
       display: 'flex',
       flexWrap: 'wrap',
@@ -82,6 +82,15 @@ export const styles = {
       fontSize: '0.9rem',
       textAlign: 'center',
     },
+    [mq('md')]: {
+      height: 160,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-evenly',
+      em: {
+        fontSize: '1.2rem',
+      },
+    },
   }),
   score: css({
     flex: '0 0 40%',
@@ -96,7 +105,14 @@ export const styles = {
         content: '":"',
         position: 'relative',
         top: '-0.2rem',
-        margin: '0 0.2rem',
+        margin: '0 0.4rem',
+        fontWeight: 400,
+      },
+    },
+    [mq('md')]: {
+      flex: '0 1 auto',
+      span: {
+        fontSize: '4rem',
       },
     },
   }),
@@ -119,9 +135,18 @@ export const styles = {
     '&:before': {
       content: '"장소"',
       display: 'block',
-      marginBottom: '0.2rem',
+      margin: '0 0 0.4rem 0',
       fontWeight: 400,
       fontSize: '0.8rem',
+    },
+    [mq('md')]: {
+      flex: '0 1 auto',
+      fontSize: '1rem',
+      '&:before': {
+        display: 'inline-block',
+        margin: '0 0.4rem 0 0',
+        fontSize: 'inherit',
+      },
     },
   }),
   ticketTags: css({
@@ -137,6 +162,12 @@ export const styles = {
       fontWeight: 600,
       fontSize: '0.9rem',
       margin: '0.5rem 0 0.5rem 0.5rem',
+    },
+    [mq('md')]: {
+      justifyContent: 'center',
+      em: {
+        fontSize: '1rem',
+      },
     },
   }),
 };
