@@ -4,14 +4,14 @@ import { styles } from './styles';
 
 export default function MyTicketList() {
   const getMyTickets = useTicketStore(state => state.getMyTickets);
-  const isEmpty = useTicketStore(state => state.isEmpty);
   const myTickets = useTicketStore(state => state.tickets);
 
   useEffect(() => {
     getMyTickets();
   }, [getMyTickets]);
 
-  if (isEmpty) return <div css={styles.isEmpty}>등록한 티켓이 없습니다.</div>;
+  if (myTickets.length == 0)
+    return <div css={styles.isEmpty}>등록한 티켓이 없습니다.</div>;
 
   return (
     <ul css={styles.myTicketList}>
