@@ -32,15 +32,15 @@ export const KBO_LEAGUE_TEAMS_FULLNAME = {
 
 export const KBO_LEAGUE_STADIUMS = {
   KT: '수원 KT 위즈 파크',
-  OB: '서울 잠실야구장(두산)',
+  OB: '잠실야구장',
   SS: '대구 삼성 라이온즈 파크',
-  LG: '서울 잠실야구장(LG)',
+  LG: '잠실야구장',
   WO: '고척 스카이돔',
   SK: '인천 SSG 랜더스필드',
-  LT: '부산 사직야구장',
+  LT: '사직야구장',
   NC: '창원 NC 파크',
-  HT: '광주 기아 챔피언스 필드',
-  HH: '대전 한화생명 이글스파크',
+  HT: '광주-기아 챔피언스 필드',
+  HH: '대전 한화생명 이글스 파크',
 } as const;
 
 export const Days = ['일', '월', '화', '수', '목', '금', '토'];
