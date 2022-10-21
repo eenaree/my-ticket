@@ -109,7 +109,7 @@ const ticketFormReducer: React.Reducer<TicketFormContext, TicketFormActions> = (
         scoreType:
           state.homeTeam == state.myTeam
             ? getScoreType(action.score, state.score.awayTeam)
-            : getScoreType(state.score.homeTeam, action.score),
+            : getScoreType(state.score.awayTeam, action.score),
       };
   }
 };
