@@ -3,7 +3,7 @@ import {
   KBO_LEAGUE_STADIUMS,
   KBO_LEAGUE_TEAMS_FULLNAME,
   KBOTeams,
-} from '@constants/global';
+} from '~/constants/global';
 import { styles } from './styles';
 
 export default function StadiumList() {

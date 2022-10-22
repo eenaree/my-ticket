@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useTicketStore } from '@store/.';
+import { useTicketStore } from '~/store';
 import { styles } from './styles';
 
 export default function MyTicketList() {

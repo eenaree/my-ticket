@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { KBO_LEAGUE_TEAMS } from '@constants/global';
-import { useTeamStore } from '@store/.';
+import { KBO_LEAGUE_TEAMS } from '~/constants/global';
+import { useTeamStore } from '~/store';
 import { styles } from './styles';
 
 export default function MyTeamList() {

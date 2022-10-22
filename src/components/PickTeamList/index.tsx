@@ -1,5 +1,5 @@
-import { KBO_LEAGUE_TEAMS } from '@constants/global';
-import { TeamId } from '@typings/db';
+import { KBO_LEAGUE_TEAMS } from '~/constants/global';
+import { TeamId } from '~/typings/db';
 import { styles } from './styles';
 
 interface Props {

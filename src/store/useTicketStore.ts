@@ -1,5 +1,5 @@
 import create from 'zustand';
-import * as TicketService from '@services/tickets';
+import * as TicketService from '~/services/tickets';
 
 interface TicketState {
   tickets: TicketService.MyTicket[];

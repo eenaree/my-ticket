@@ -1,4 +1,4 @@
-import { KBO_LEAGUE_TEAMS } from '@constants/global';
+import { KBO_LEAGUE_TEAMS } from '~/constants/global';
 
 export interface User {
   id: number;

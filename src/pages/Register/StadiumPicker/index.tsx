@@ -1,4 +1,4 @@
-import StadiumList from '@components/StadiumList';
+import StadiumList from '~/components/StadiumList';
 import { styles } from './styles';
 
 export default function StadiumPicker() {

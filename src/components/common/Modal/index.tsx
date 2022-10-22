@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import useDelayUnmount from '@hooks/useDelayUnmount';
-import useElement from '@hooks/useElement';
-import { useModalStore } from '@store/.';
+import useDelayUnmount from '~/hooks/useDelayUnmount';
+import useElement from '~/hooks/useElement';
+import { useModalStore } from '~/store';
 import { styles } from './styles';
 
 interface Props {

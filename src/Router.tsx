@@ -1,14 +1,14 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { TicketFormProvider } from '@context/TicketFormContext';
-import Authenticated from '@pages/Authenticated';
-import Layout from '@pages/Layout';
-import Login from '@pages/Login';
-import Main from '@pages/Main';
-import MyTeam from '@pages/Main/MyTeam';
-import TicketHistory from '@pages/Main/TicketHistory';
-import StadiumPicker from '@pages/Register/StadiumPicker';
-import TicketForm from '@pages/Register/TicketForm';
-import RequireAuth from '@pages/RequireAuth';
+import { TicketFormProvider } from '~/context/TicketFormContext';
+import Authenticated from '~/pages/Authenticated';
+import Layout from '~/pages/Layout';
+import Login from '~/pages/Login';
+import Main from '~/pages/Main';
+import MyTeam from '~/pages/Main/MyTeam';
+import TicketHistory from '~/pages/Main/TicketHistory';
+import StadiumPicker from '~/pages/Register/StadiumPicker';
+import TicketForm from '~/pages/Register/TicketForm';
+import RequireAuth from '~/pages/RequireAuth';
 
 export default function Router() {
   return (

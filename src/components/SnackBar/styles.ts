@@ -1,5 +1,5 @@
 import { css, keyframes } from '@emotion/react';
-import { colors } from '@styles/theme';
+import { colors } from '~/styles/theme';
 
 const fadeIn = keyframes({
   from: { bottom: 0, opacity: 0 },

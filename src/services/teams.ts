@@ -1,4 +1,4 @@
-import { TeamId } from '@typings/db';
+import { TeamId } from '~/typings/db';
 import { httpClient } from '.';
 
 type FetchMyTeams = Array<{

@@ -1,4 +1,4 @@
-import { User } from '@typings/db';
+import { User } from '~/typings/db';
 import { httpClient } from '.';
 
 interface AuthResponse {

@@ -1,9 +1,9 @@
-import RadioButton from '@components/common/RadioButton';
-import SetMatchSeries from '@components/SetMatchSeries';
+import RadioButton from '~/components/common/RadioButton';
+import SetMatchSeries from '~/components/SetMatchSeries';
 import {
   useTicketForm,
   useTicketFormDispatch,
-} from '@context/TicketFormContext';
+} from '~/context/TicketFormContext';
 import { styles } from './styles';
 
 const KBO_LEAGUE_SEASONS = ['정규시즌', '포스트시즌'];

@@ -1,10 +1,10 @@
-import RadioButton from '@components/common/RadioButton';
-import { KBO_LEAGUE_TEAMS } from '@constants/global';
+import RadioButton from '~/components/common/RadioButton';
+import { KBO_LEAGUE_TEAMS } from '~/constants/global';
 import {
   useTicketForm,
   useTicketFormDispatch,
-} from '@context/TicketFormContext';
-import { TeamId } from '@typings/db';
+} from '~/context/TicketFormContext';
+import { TeamId } from '~/typings/db';
 import { styles } from './styles';
 
 export default function SetMyTeam() {

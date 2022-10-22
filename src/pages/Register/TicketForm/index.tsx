@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Button from '@components/common/Button';
-import ConfirmTicket from '@components/ConfirmTicket';
-import ProgressIndicator from '@components/ProgressIndicator';
-import SetAwayTeam from '@components/SetAwayTeam';
-import SetMatchDate from '@components/SetMatchDate';
-import SetMatchScore from '@components/SetMatchScore';
-import SetMatchSeason from '@components/SetMatchSeason';
-import SetMyTeam from '@components/SetMyTeam';
-import { useTicketForm } from '@context/TicketFormContext';
-import { createTicket } from '@services/tickets';
-import { useSnackBarStore } from '@store/useSnackBarStore';
+import Button from '~/components/common/Button';
+import ConfirmTicket from '~/components/ConfirmTicket';
+import ProgressIndicator from '~/components/ProgressIndicator';
+import SetAwayTeam from '~/components/SetAwayTeam';
+import SetMatchDate from '~/components/SetMatchDate';
+import SetMatchScore from '~/components/SetMatchScore';
+import SetMatchSeason from '~/components/SetMatchSeason';
+import SetMyTeam from '~/components/SetMyTeam';
+import { useTicketForm } from '~/context/TicketFormContext';
+import { createTicket } from '~/services/tickets';
+import { useSnackBarStore } from '~/store/useSnackBarStore';
 import { styles } from './styles';
 
 function renderTicketRegisterForm(step: number) {

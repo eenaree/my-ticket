@@ -1,8 +1,8 @@
-import Button from '@components/common/Button';
-import Modal from '@components/common/Modal';
-import MyTeamList from '@components/MyTeamList';
-import TeamPicker from '@components/TeamPicker';
-import { useModalStore } from '@store/useModalStore';
+import Button from '~/components/common/Button';
+import Modal from '~/components/common/Modal';
+import MyTeamList from '~/components/MyTeamList';
+import TeamPicker from '~/components/TeamPicker';
+import { useModalStore } from '~/store/useModalStore';
 import { styles } from './styles';
 
 export default function MyTeam() {

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import Button from '@components/common/Button';
-import { useUserStore } from '@store/.';
+import Button from '~/components/common/Button';
+import { useUserStore } from '~/store';
 import { styles } from './styles';
 
 export default function Header() {

@@ -1,6 +1,6 @@
-import { Days, KBO_LEAGUE_TEAMS } from '@constants/global';
-import { useTicketForm } from '@context/TicketFormContext';
-import { colors } from '@styles/theme';
+import { Days, KBO_LEAGUE_TEAMS } from '~/constants/global';
+import { useTicketForm } from '~/context/TicketFormContext';
+import { colors } from '~/styles/theme';
 import { styles } from './styles';
 
 const scoreTypes = {

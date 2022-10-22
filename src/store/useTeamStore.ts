@@ -1,6 +1,6 @@
 import create from 'zustand';
-import * as TeamService from '@services/teams';
-import { TeamId } from '@typings/db';
+import * as TeamService from '~/services/teams';
+import { TeamId } from '~/typings/db';
 
 interface TeamState {
   myTeams: TeamId[];

@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { mq } from '@styles/mediaQueries';
+import { mq } from '~/styles/mediaQueries';
 
 export const styles = {
   form: css({

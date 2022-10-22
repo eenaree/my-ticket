@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { useSnackBarStore } from '@store/.';
+import { useSnackBarStore } from '~/store';
 import { styles } from './styles';
 
 export default function SnackBar() {

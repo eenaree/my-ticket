@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import useDetectOutsideClick from '@hooks/useDetectOutsideClick';
+import useDetectOutsideClick from '~/hooks/useDetectOutsideClick';
 import { styles } from './styles';
 
 interface Props {

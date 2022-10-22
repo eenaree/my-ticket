@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import Button from '@components/common/Button';
-import PickTeamList from '@components/PickTeamList';
-import TeamPickerList from '@components/TeamPickerList';
-import { useModalStore, useSnackBarStore, useTeamStore } from '@store/.';
-import { TeamId, TeamName } from '@typings/db';
+import Button from '~/components/common/Button';
+import PickTeamList from '~/components/PickTeamList';
+import TeamPickerList from '~/components/TeamPickerList';
+import { useModalStore, useSnackBarStore, useTeamStore } from '~/store';
+import { TeamId, TeamName } from '~/typings/db';
 import { styles } from './styles';
 
 export default function TeamPicker() {

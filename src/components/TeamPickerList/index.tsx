@@ -1,6 +1,6 @@
-import Checkbox from '@components/common/Checkbox';
-import { KBO_LEAGUE_TEAMS, KBOTeams } from '@constants/global';
-import { TeamId } from '@typings/db';
+import Checkbox from '~/components/common/Checkbox';
+import { KBO_LEAGUE_TEAMS, KBOTeams } from '~/constants/global';
+import { TeamId } from '~/typings/db';
 import { styles } from './styles';
 
 interface Props {

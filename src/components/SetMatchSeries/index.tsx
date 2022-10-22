@@ -1,8 +1,8 @@
-import RadioButton from '@components/common/RadioButton';
+import RadioButton from '~/components/common/RadioButton';
 import {
   useTicketForm,
   useTicketFormDispatch,
-} from '@context/TicketFormContext';
+} from '~/context/TicketFormContext';
 import { styles } from './styles';
 
 const KBO_POSTSEASON_SERIES = [

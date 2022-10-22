@@ -1,7 +1,7 @@
 import { createContext, useContext, useReducer } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
-import { KBO_LEAGUE_STADIUMS, KBOTeams } from '@constants/global';
-import { TeamId } from '@typings/db';
+import { KBO_LEAGUE_STADIUMS, KBOTeams } from '~/constants/global';
+import { TeamId } from '~/typings/db';
 
 export interface TicketFormContext {
   matchDate: {

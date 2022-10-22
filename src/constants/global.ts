@@ -1,4 +1,4 @@
-import { TeamId } from '@typings/db';
+import { TeamId } from '~/typings/db';
 
 export const BASE_URL = 'http://localhost:8080/api';
 

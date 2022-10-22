@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { colors } from '@styles/theme';
+import { colors } from '~/styles/theme';
 
 export const styles = {
   noneTeamList: css({

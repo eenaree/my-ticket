@@ -1,7 +1,7 @@
 import create from 'zustand';
 import { persist } from 'zustand/middleware';
-import * as authService from '@services/auth';
-import { User } from '@typings/db';
+import * as authService from '~/services/auth';
+import { User } from '~/typings/db';
 
 interface UserState {
   user: User | null;

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import MyTicketList from '@components/MyTicketList';
+import MyTicketList from '~/components/MyTicketList';
 import { styles } from './styles';
 
 export default function TicketHistory() {

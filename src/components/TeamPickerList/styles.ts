@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
-import { mq } from '@styles/mediaQueries';
-import { colors } from '@styles/theme';
+import { mq } from '~/styles/mediaQueries';
+import { colors } from '~/styles/theme';
 
 export const styles = {
   teamList: css({

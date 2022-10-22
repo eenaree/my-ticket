@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import { useUserStore } from '@store/.';
+import { useUserStore } from '~/store';
 
 export default function RequireAuth() {
   const { user } = useUserStore();

@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import GoogleLoginIcon from '@assets/google-login.svg';
-import KakaoLoginIcon from '@assets/kakao-login.svg';
-import NaverLoginIcon from '@assets/naver-login.svg';
-import { BASE_URL } from '@constants/global';
-import { useUserStore } from '@store/.';
-import { User } from '@typings/db';
+import GoogleLoginIcon from '~/assets/google-login.svg';
+import KakaoLoginIcon from '~/assets/kakao-login.svg';
+import NaverLoginIcon from '~/assets/naver-login.svg';
+import { BASE_URL } from '~/constants/global';
+import { useUserStore } from '~/store';
+import { User } from '~/typings/db';
 import { styles } from './styles';
 
 interface ProviderProps {

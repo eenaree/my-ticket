@@ -1,6 +1,6 @@
-import { Days, KBO_LEAGUE_TEAMS } from '@constants/global';
-import { TicketFormContext } from '@context/TicketFormContext';
-import { Ticket } from '@typings/db';
+import { Days, KBO_LEAGUE_TEAMS } from '~/constants/global';
+import { TicketFormContext } from '~/context/TicketFormContext';
+import { Ticket } from '~/typings/db';
 import { httpClient } from '.';
 
 export type MyTicket = ReturnType<typeof decodeMyTicket>;

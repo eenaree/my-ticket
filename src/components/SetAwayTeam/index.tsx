@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import RadioButton from '@components/common/RadioButton';
-import { KBO_LEAGUE_TEAMS, KBOTeams } from '@constants/global';
+import RadioButton from '~/components/common/RadioButton';
+import { KBO_LEAGUE_TEAMS, KBOTeams } from '~/constants/global';
 import {
   useTicketForm,
   useTicketFormDispatch,
-} from '@context/TicketFormContext';
-import { TeamId } from '@typings/db';
+} from '~/context/TicketFormContext';
+import { TeamId } from '~/typings/db';
 import { styles } from './styles';
 
 interface AwayTeamListProps {

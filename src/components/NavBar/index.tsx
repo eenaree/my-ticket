@@ -1,4 +1,4 @@
-import CustomLink from '@components/CustomLink';
+import CustomLink from '~/components/CustomLink';
 import { styles } from './styles';
 
 export default function NavBar() {

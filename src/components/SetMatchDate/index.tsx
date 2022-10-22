@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import Dropdown from '@components/common/Dropdown';
+import Dropdown from '~/components/common/Dropdown';
 import {
   useTicketForm,
   useTicketFormDispatch,
-} from '@context/TicketFormContext';
+} from '~/context/TicketFormContext';
 import { styles } from './styles';
 
 function getMatchCalendar() {
