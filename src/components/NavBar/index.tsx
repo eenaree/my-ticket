@@ -5,7 +5,7 @@ import { styles } from './styles';
 
 export default function NavBar() {
   const [sticky, setSticky] = useState(false);
-  const [navRectRef, setNavRef] = useElementRect();
+  const [navRectRef, setNavRectRef] = useElementRect();
 
   useEffect(() => {
     function handleScroll() {
@@ -22,7 +22,7 @@ export default function NavBar() {
   }, []);
 
   return (
-    <nav css={[styles.navList, sticky && styles.sticky]} ref={setNavRef}>
+    <nav css={[styles.navList, sticky && styles.sticky]} ref={setNavRectRef}>
       <div>
         <CustomLink to="/">직관 히스토리</CustomLink>
         <CustomLink to="myteam">MY 팀</CustomLink>
