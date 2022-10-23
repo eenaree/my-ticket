@@ -1,21 +1,17 @@
-import { useEffect } from 'react';
-import { useTicketStore } from '~/store';
+import * as TicketService from '~/services/tickets';
 import { styles } from './styles';
 
-export default function MyTicketList() {
-  const getMyTickets = useTicketStore(state => state.getMyTickets);
-  const myTickets = useTicketStore(state => state.tickets);
+interface Props {
+  tickets: TicketService.MyTicket[];
+}
 
-  useEffect(() => {
-    getMyTickets();
-  }, [getMyTickets]);
-
-  if (myTickets.length == 0)
+export default function MyTicketList({ tickets }: Props) {
+  if (tickets.length == 0)
     return <div css={styles.isEmpty}>등록한 티켓이 없습니다.</div>;
 
   return (
     <ul css={styles.myTicketList}>
-      {myTickets.map(ticket => (
+      {tickets.map(ticket => (
         <li
           key={ticket.id}
           style={{
