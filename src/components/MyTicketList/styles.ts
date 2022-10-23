@@ -15,7 +15,7 @@ export const styles = {
     },
   }),
   myTicketList: css({
-    padding: '1rem',
+    padding: '1rem 1rem 4rem 1rem',
     li: {
       margin: '0 auto 1rem',
       maxWidth: 360,
@@ -28,7 +28,7 @@ export const styles = {
       flexDirection: 'column',
     },
     [mq('xs')]: {
-      padding: 0,
+      padding: '0 0 4rem 0',
       display: 'flex',
       flexWrap: 'wrap',
       li: {
