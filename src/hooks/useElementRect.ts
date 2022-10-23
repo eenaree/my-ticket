@@ -1,15 +1,12 @@
-import { useEffect, useRef } from 'react';
-import useElement from './useElement';
+import { useRef } from 'react';
 
 export default function useElementRect() {
-  const [elementRef, setElementRef] = useElement();
   const rectRef = useRef<DOMRect>();
-
-  useEffect(() => {
-    if (elementRef.current) {
-      rectRef.current = elementRef.current.getBoundingClientRect();
+  const setRectRef: React.RefCallback<HTMLElement> = element => {
+    if (element) {
+      rectRef.current = element.getBoundingClientRect();
     }
-  });
+  };
 
-  return [rectRef, setElementRef] as const;
+  return [rectRef, setRectRef] as const;
 }
